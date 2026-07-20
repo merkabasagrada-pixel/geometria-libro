@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometría y Diseño Divino — Enzo Emanuel Burga</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8d48b;
+  --gold-dark: #a07e2e;
+  --gold-muted: rgba(201, 168, 76, 0.15);
+  --gold-glow: rgba(201, 168, 76, 0.08);
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f16;
+  --bg-card: #13131c;
+  --bg-page: #0d0d14;
+  --text-primary: #e8e6e1;
+  --text-secondary: #a09e97;
+  --text-muted: #6b6963;
+  --border-subtle: rgba(201, 168, 76, 0.12);
+  --border-medium: rgba(201, 168, 76, 0.25);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 2.0;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== BOOK CONTAINER ===== */
+.book {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ===== PAGE STRUCTURE ===== */
+.page {
+  min-height: 100vh;
+  padding: 6rem 0 4rem;
+  position: relative;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--gold-muted), transparent);
+}
+
+/* ===== COVER PAGE ===== */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 350px;
+  height: 350px;
+  border: 1px solid rgba(201, 168, 76, 0.06);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+.cover-image-placeholder {
+  width: 280px;
+  height: 360px;
+  border: 1px dashed var(--border-medium);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+  background: rgba(201, 168, 76, 0.03);
+}
+
+.cover-image-placeholder span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.cover-geometric {
+  position: absolute;
+  z-index: 1;
+}
+
+.cover-geometric.hexagon {
+  top: 10%;
+  right: 8%;
+  width: 120px;
+  height: 120px;
+  opacity: 0.06;
+}
+
+.cover-geometric.triangle {
+  bottom: 15%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+  opacity: 0.05;
+}
+
+.cover-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+  line-height: 1.3;
+}
+
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  line-height: 1.8;
+}
+
+.cover-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-author {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc {
+  padding: 6rem 0;
+}
+
+.toc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.toc-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+}
+
+.toc-list {
+  list-style: none;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+  transition: all 0.3s ease;
+}
+
+.toc-item:hover {
+  border-bottom-color: var(--border-medium);
+}
+
+.toc-item:hover .toc-label {
+  color: var(--gold-light);
+}
+
+.toc-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(201, 168, 76, 0.15);
+  margin: 0 0.75rem;
+  min-width: 20px;
+  align-self: flex-end;
+  margin-bottom: 0.3em;
+}
+
+.toc-page {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  min-width: 24px;
+  text-align: right;
+}
+
+.toc-section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--gold-dark);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 2rem 0 0.8rem;
+  display: block;
+}
+
+/* ===== CHAPTER STYLING ===== */
+.chapter {
+  padding: 5rem 0 4rem;
+  position: relative;
+  page-break-before: always;
+}
+
+.chapter-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: rgba(201, 168, 76, 0.08);
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  line-height: 1;
+  user-select: none;
+}
+
+.chapter-header {
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.chapter-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--gold-dark);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.chapter-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+.chapter-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ===== PROLOGUE & EPILOGUE SPECIAL ===== */
+.special-chapter {
+  text-align: center;
+}
+
+.special-chapter .chapter-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.special-chapter .chapter-subtitle {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.special-chapter .chapter-header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 2rem auto 0;
+}
+
+/* ===== CHAPTER OPENING ORNAMENT ===== */
+.chapter-ornament {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.chapter-ornament svg {
+  opacity: 0.2;
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-divider {
+  text-align: center;
+  padding: 3rem 0;
+  position: relative;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+}
+
+.section-divider .divider-symbol {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-primary);
+  padding: 0 1.5rem;
+  display: inline-block;
+}
+
+.section-divider .divider-symbol svg {
+  opacity: 0.3;
+}
+
+/* ===== TEXT STYLING ===== */
+.text-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2.0;
+  color: var(--text-primary);
+  margin-bottom: 1.8rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.text-body.text-center {
+  text-align: center;
+}
+
+.text-body.text-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.9;
+}
+
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.text-highlight {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+.text-formula {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--gold-light);
+  background: var(--gold-glow);
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--border-subtle);
+  display: inline;
+}
+
+/* ===== BLOCKQUOTE ===== */
+.blockquote {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 2px solid var(--gold);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.04), transparent);
+  position: relative;
+}
+
+.blockquote::before {
+  content: '"';
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3rem;
+  color: rgba(201, 168, 76, 0.15);
+  position: absolute;
+  top: -0.5rem;
+  left: 0.8rem;
+  line-height: 1;
+}
+
+.blockquote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  padding-left: 0.5rem;
+}
+
+/* ===== IMAGE PLACEHOLDER BOXES ===== */
+.image-box {
+  margin: 3rem auto;
+  max-width: 600px;
+  position: relative;
+}
+
+.image-box-inner {
+  border: 1px dashed var(--border-medium);
+  border-radius: 6px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.02), rgba(201, 168, 76, 0.05));
+  position: relative;
+  overflow: hidden;
+}
+
+.image-box-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.image-box-inner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.image-box-icon {
+  margin-bottom: 1rem;
+  opacity: 0.25;
+}
+
+.image-box-number {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.image-box-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.image-box-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.image-box-size {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--gold-dark);
+  letter-spacing: 0.1em;
+  margin-top: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ===== LISTS ===== */
+.text-list {
+  margin: 1.5rem 0 2rem 1.5rem;
+  list-style: none;
+}
+
+.text-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+.text-list li::before {
+  content: '◇';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.7rem;
+  top: 0.4em;
+}
+
+.text-list .list-highlight {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+/* ===== GEOMETRIC DECORATIONS ===== */
+.geo-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.08;
+}
+
+.geo-corner.top-left {
+  top: 2rem;
+  left: 0;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+}
+
+.geo-corner.bottom-right {
+  bottom: 2rem;
+  right: 0;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+/* ===== PAGE NUMBER ===== */
+.page-number {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+}
+
+.page-number::before,
+.page-number::after {
+  content: '—';
+  margin: 0 0.5rem;
+  color: var(--border-subtle);
+}
+
+/* ===== FOOTER ORNAMENT ===== */
+.footer-ornament {
+  text-align: center;
+  padding: 2rem 0;
+  opacity: 0.15;
+}
+
+/* ===== COLOPHON ===== */
+.colophon {
+  text-align: center;
+  padding: 4rem 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 4rem;
+}
+
+.colophon-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+
+/* ===== SACRED GEOMETRY BG PATTERNS ===== */
+.sacred-bg {
+  position: relative;
+}
+
+.sacred-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -60px;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(201, 168, 76, 0.03);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  @page {
+    size: Letter;
+    margin: 0.6in 0.5in 0.8in 0.5in;
+  }
+
+  body {
+    background: #0a0a0f !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .book {
+    max-width: 100%;
+    padding: 0;
+    background: #0a0a0f !important;
+  }
+
+  .page {
+    min-height: auto;
+    padding: 0;
+    page-break-after: always;
+    page-break-inside: avoid;
+    background: #0a0a0f !important;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  .chapter {
+    page-break-before: always;
+    background: #0a0a0f !important;
+  }
+
+  .image-box {
+    page-break-inside: avoid;
+  }
+
+  .image-box-inner {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.02), rgba(201, 168, 76, 0.05)) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .blockquote {
+    page-break-inside: avoid;
+  }
+
+  .cover::before {
+    animation: none;
+  }
+
+  .cover {
+    background: #0a0a0f !important;
+  }
+
+  .toc {
+    background: #0a0a0f !important;
+  }
+
+  @page :first {
+    margin-top: 0;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .book { padding: 0 1.2rem; }
+  .cover-title { font-size: 1.8rem; }
+  .chapter-title { font-size: 1.4rem; }
+  .chapter-number { font-size: 3rem; }
+  .text-body { font-size: 0.95rem; }
+}
+
+@media print {
+  @page {
+    size: A5;
+    margin: 18mm 15mm 20mm 15mm;
+  }
+
+  body {
+    background: #08080e !important;
+    color: var(--gold) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .book {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .page, .chapter {
+    page-break-inside: avoid;
+    page-break-after: always;
+    min-height: auto !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .page:first-child {
+    page-break-before: avoid;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  .chapter-header {
+    break-after: avoid;
+  }
+
+  .section-heading {
+    break-after: avoid;
+  }
+
+  .image-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .image-box-inner svg {
+    max-height: 180px;
+    object-fit: contain;
+  }
+
+  .cover-ornament, .chapter-ornament, .footer-ornament, .geo-corner {
+    break-inside: avoid;
+  }
+
+  .page-number {
+    position: fixed;
+    bottom: 10mm;
+    opacity: 0.5;
+  }
+
+  .chapter-number {
+    font-size: 2.5rem !important;
+  }
+
+  .cover-title {
+    font-size: 1.5rem !important;
+  }
+
+  .chapter-title {
+    font-size: 1.2rem !important;
+  }
+
+  .text-body {
+    font-size: 0.9rem !important;
+    line-height: 1.5;
+  }
+
+  .text-formula {
+    background: none !important;
+    border: 0.5px solid var(--gold) !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: var(--gold) !important;
+  }
+
+  .toc a::after {
+    content: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="book">
+
+<!-- ============================================== -->
+<!-- COVER PAGE -->
+<!-- ============================================== -->
+<section class="cover page" id="cover">
+  <!-- Decorative sacred geometry -->
+  <svg class="cover-geometric hexagon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="60,5 110,30 110,90 60,115 10,90 10,30" stroke="currentColor" stroke-width="0.5" fill="none" style="color: var(--gold);"/>
+    <polygon points="60,20 95,37 95,83 60,100 25,83 25,37" stroke="currentColor" stroke-width="0.3" fill="none" style="color: var(--gold);"/>
+  </svg>
+  <svg class="cover-geometric triangle" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="40,5 75,70 5,70" stroke="currentColor" stroke-width="0.5" fill="none" style="color: var(--gold);"/>
+    <polygon points="40,75 5,10 75,10" stroke="currentColor" stroke-width="0.3" fill="none" style="color: var(--gold);"/>
+  </svg>
+
+  <div class="cover-image-placeholder">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 360" style="width:100%;height:100%;display:block;">
+      <defs>
+        <radialGradient id="coverGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.15"/>
+          <stop offset="60%" stop-color="#c9a84c" stop-opacity="0.03"/>
+          <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="coverLine" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#c9a84c" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect width="280" height="360" fill="#0a0a0f"/>
+      <rect x="10" y="10" width="260" height="340" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.5"/>
+      <circle cx="140" cy="180" r="120" fill="url(#coverGlow)"/>
+      <!-- Flower of Life pattern -->
+      <circle cx="140" cy="140" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="140" cy="220" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="106" cy="160" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="174" cy="160" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="106" cy="200" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="174" cy="200" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <circle cx="140" cy="180" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+      <!-- Merkabah star -->
+      <polygon points="140,80 195,230 85,230" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+      <polygon points="140,280 85,130 195,130" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+      <!-- Inner geometry -->
+      <circle cx="140" cy="180" r="60" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.4"/>
+      <circle cx="140" cy="180" r="80" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+      <line x1="140" y1="80" x2="140" y2="280" stroke="url(#coverLine)" stroke-width="0.4"/>
+      <line x1="85" y1="130" x2="195" y2="230" stroke="url(#coverLine)" stroke-width="0.4"/>
+      <line x1="85" y1="230" x2="195" y2="130" stroke="url(#coverLine)" stroke-width="0.4"/>
+      <!-- Small dots at vertices -->
+      <circle cx="140" cy="80" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+      <circle cx="195" cy="230" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+      <circle cx="85" cy="230" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+      <circle cx="140" cy="280" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+      <circle cx="85" cy="130" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+      <circle cx="195" cy="130" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+    </svg>
+  </div>
+
+  <h1 class="cover-title">Geometría y Diseño Divino</h1>
+  <p class="cover-subtitle">El Código Oculto de la Creación<br>y el Arte de Tejer la Luz</p>
+  <div class="cover-line"></div>
+  <p class="cover-author">Enzo Emanuel Burga</p>
+
+  <div class="page-number">001</div>
+</section>
+
+<!-- ============================================== -->
+<!-- TABLE OF CONTENTS -->
+<!-- ============================================== -->
+<section class="toc page" id="toc">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+
+  <h2 class="toc-title">Contenido</h2>
+
+  <nav class="toc-list">
+    <span class="toc-section-label">Inicio</span>
+    <li class="toc-item">
+      <a href="#prologo" class="toc-label">Prólogo — El Eco del Diseño Original</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">003</span>
+    </li>
+
+    <span class="toc-section-label">Los Fundamentos</span>
+    <li class="toc-item">
+      <a href="#cap1" class="toc-label">Capítulo I — De la Informática al Hilo: La Búsqueda del Algoritmo</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">007</span>
+    </li>
+    <li class="toc-item">
+      <a href="#cap2" class="toc-label">Capítulo II — ¿Orden o Caos? La Ilusión del Azar</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">013</span>
+    </li>
+
+    <span class="toc-section-label">La Geometría de la Fuerza</span>
+    <li class="toc-item">
+      <a href="#cap3" class="toc-label">Capítulo III — La Esfera y el Silencio: La Física de la Tensión</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">017</span>
+    </li>
+    <li class="toc-item">
+      <a href="#cap4" class="toc-label">Capítulo IV — Fibonacci, la Constante Phi y la Matriz del ADN</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">021</span>
+    </li>
+
+    <span class="toc-section-label">Frecuencia y Forma</span>
+    <li class="toc-item">
+      <a href="#cap5" class="toc-label">Capítulo V — Cimática: Cuando la Frecuencia Organiza la Materia</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">027</span>
+    </li>
+    <li class="toc-item">
+      <a href="#cap6" class="toc-label">Capítulo VI — Los Sólidos Platónicos y la Cristalografía Real</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">031</span>
+    </li>
+
+    <span class="toc-section-label">Geometría Viva</span>
+    <li class="toc-item">
+      <a href="#cap7" class="toc-label">Capítulo VII — La Merkabah y la Física de la Tensegridad</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">037</span>
+    </li>
+    <li class="toc-item">
+      <a href="#cap8" class="toc-label">Capítulo VIII — Neuroestética: La Biología del Asombro</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">043</span>
+    </li>
+
+    <span class="toc-section-label">Más Allá de lo Visible</span>
+    <li class="toc-item">
+      <a href="#cap9" class="toc-label">Capítulo IX — La Luz Invisible y el Límite Perceptivo</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">047</span>
+    </li>
+    <li class="toc-item">
+      <a href="#cap10" class="toc-label">Capítulo X — El Arte de Tejer la Luz y la Meditación Activa</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">051</span>
+    </li>
+
+    <span class="toc-section-label">Cierre</span>
+    <li class="toc-item">
+      <a href="#epilogo" class="toc-label">Epílogo — Habitantes de la Armonía</a>
+      <span class="toc-dots"></span>
+      <span class="toc-page">057</span>
+    </li>
+  </nav>
+
+  <div class="page-number">002</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- DEDICATORIA -->
+<!-- ============================================== -->
+<section class="chapter special-chapter" id="dedicatoria" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+  <div style="text-align: center; max-width: 500px;">
+
+    <!-- IMAGE BOX 25 -->
+    <div class="image-box" style="margin-bottom: 3rem;">
+      <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8"/>
+  <circle cx="150" cy="100" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="172" cy="112" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="172" cy="138" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="150" cy="150" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="128" cy="138" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="128" cy="112" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.7"/>
+  <circle cx="150" cy="75" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="194" cy="100" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="194" cy="150" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="150" cy="175" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="106" cy="150" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="106" cy="100" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="150" cy="125" r="60" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.35"/>
+</svg>
+      </div>
+    </div>
+
+    <p class="text-body text-italic" style="font-size: 1.15rem; margin-bottom: 2rem;">
+      Para quienes buscan el orden detrás del silencio.
+    </p>
+
+    <div class="footer-ornament">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="0.3" style="color:var(--gold)" fill="none"/>
+        <circle cx="20" cy="20" r="1" fill="currentColor" style="color:var(--gold)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- PRÓLOGO -->
+<!-- ============================================== -->
+<section class="chapter special-chapter" id="prologo">
+  <div class="chapter-ornament">
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="0.5" style="color: var(--gold);"/>
+      <circle cx="30" cy="30" r="18" stroke="currentColor" stroke-width="0.3" style="color: var(--gold);"/>
+      <circle cx="30" cy="30" r="8" stroke="currentColor" stroke-width="0.3" style="color: var(--gold);"/>
+      <line x1="30" y1="2" x2="30" y2="58" stroke="currentColor" stroke-width="0.2" style="color: var(--gold);"/>
+      <line x1="2" y1="30" x2="58" y2="30" stroke="currentColor" stroke-width="0.2" style="color: var(--gold);"/>
+    </svg>
+  </div>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Prólogo</span>
+    <h2 class="chapter-title">El Eco del Diseño Original</h2>
+  </div>
+
+  <p class="text-body">Existe un silencio inmenso, denso y lleno de potencial que precede a la aparición de todas las formas en el universo. Cuando nos detenemos a contemplar la deslumbrante variedad del mundo que nos rodea —la sutil danza de las hojas de un árbol orientándose en el aire para captar la mayor cantidad de luz solar al amanecer, la espiral vertiginosa de una caracol marina depositada en la orilla, la delicada hélice tridimensional de nuestro propio ADN o el giro monumental de una galaxia a millones de años luz—, la mente analítica moderna a menudo nos susurra una idea paralizante: la ilusión de que habitamos un cosmos caótico, desconectado y fruto de una simple serie de accidentes aleatorios.</p>
+
+  <!-- IMAGE BOX 1 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="cosmos1" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.12"/>
+      <stop offset="70%" stop-color="#c9a84c" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#08080e"/>
+  <ellipse cx="150" cy="110" rx="130" ry="50" fill="url(#cosmos1)" opacity="0.6"/>
+  <ellipse cx="100" cy="130" rx="80" ry="30" fill="url(#cosmos1)" opacity="0.4"/>
+  <ellipse cx="200" cy="95" rx="60" ry="25" fill="url(#cosmos1)" opacity="0.3"/>
+  <circle cx="50" cy="30" r="1.5" fill="#c9a84c" opacity="0.95"/>
+  <circle cx="120" cy="18" r="0.7" fill="#c9a84c" opacity="0.6"/>
+  <circle cx="200" cy="25" r="1.2" fill="#c9a84c" opacity="0.85"/>
+  <circle cx="270" cy="40" r="0.9" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="35" cy="80" r="0.6" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="90" cy="65" r="1.8" fill="#c9a84c" opacity="1"/>
+  <circle cx="160" cy="50" r="0.5" fill="#c9a84c" opacity="0.4"/>
+  <circle cx="240" cy="60" r="1.0" fill="#c9a84c" opacity="0.75"/>
+  <circle cx="280" cy="90" r="0.8" fill="#c9a84c" opacity="0.65"/>
+  <circle cx="20" cy="130" r="1.1" fill="#c9a84c" opacity="0.8"/>
+  <circle cx="70" cy="115" r="0.4" fill="#c9a84c" opacity="0.35"/>
+  <circle cx="140" cy="100" r="1.4" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="210" cy="85" r="0.6" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="260" cy="120" r="1.3" fill="#c9a84c" opacity="0.85"/>
+  <circle cx="45" cy="170" r="0.8" fill="#c9a84c" opacity="0.6"/>
+  <circle cx="110" cy="155" r="0.5" fill="#c9a84c" opacity="0.45"/>
+  <circle cx="180" cy="145" r="1.6" fill="#c9a84c" opacity="0.95"/>
+  <circle cx="250" cy="160" r="0.7" fill="#c9a84c" opacity="0.55"/>
+  <circle cx="30" cy="210" r="1.0" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="85" cy="195" r="0.9" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="155" cy="185" r="0.4" fill="#c9a84c" opacity="0.3"/>
+  <circle cx="225" cy="200" r="1.2" fill="#c9a84c" opacity="0.8"/>
+  <circle cx="275" cy="185" r="0.6" fill="#c9a84c" opacity="0.5"/>
+  <circle cx="60" cy="235" r="0.7" fill="#c9a84c" opacity="0.55"/>
+  <circle cx="130" cy="225" r="1.0" fill="#c9a84c" opacity="0.75"/>
+  <circle cx="200" cy="230" r="0.5" fill="#c9a84c" opacity="0.4"/>
+  <circle cx="270" cy="220" r="0.8" fill="#c9a84c" opacity="0.6"/>
+  <circle cx="95" cy="40" r="2.0" fill="#c9a84c" opacity="0.3"/>
+  <circle cx="95" cy="40" r="4.0" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.5"/>
+  <circle cx="180" cy="145" r="2.5" fill="#c9a84c" opacity="0.25"/>
+  <circle cx="180" cy="145" r="5.0" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="0" y1="125" x2="300" y2="125" stroke="#c9a84c" stroke-opacity="0.02" stroke-width="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Nos hemos acostumbrado a asumir que la materia física se organiza por pura entropía, por choque ciego de partículas en la nada. Sin embargo, basta con detener la prisa cotidiana, pausar el ruido de la rutina y afinar la mirada para descubrir una verdad asombrosa y luminosa: <span class="text-highlight">la Naturaleza no improvisa jamás.</span></p>
+
+  <p class="text-body">En cada uno de sus movimientos, desde la escala subatómica hasta las grandes estructuras cosmológicas, palpita una gramática invisible. Existe un código de proporciones exactas, constantes matemáticas inalterables y frecuencias armónicas que optimiza el flujo de la energía, minimiza la resistencia y sostiene cada rincón de la materia física.</p>
+
+  <p class="text-body">A este orden profundo y primigenio solemos llamarlo <span class="text-highlight">Geometría Sagrada</span>. Pero debemos comprender esto desde las primeras líneas con total claridad y honestidad intelectual: la geometría no es la Fuente creadora en sí misma. No es Dios, ni es un objeto de adoración mística abstracta. La geometría es, sencillamente, el lenguaje impecable, el alfabeto perfecto mediante el cual esa Fuente inefable se revela, se expresa y se materializa en el plano físico. Es la sintaxis con la que el Creador programa la realidad.</p>
+
+  <p class="text-body">Durante mucho tiempo, la humanidad ha vivido bajo la ilusión de la separación. Nos han enseñado a sentirnos entes aislados, meros espectadores pasivos caminando sobre la superficie de un planeta inerte. Sin embargo, cuando una forma natural nos parece profundamente bella, cuando nos conmueve hasta las lágrimas la simetría de una flor, la estructura impecable de un cristal de hielo o la quietud matemática de un cielo estrellado, lo que ocurre en realidad no es un capricho cultural ni un juicio estético subjetivo. Es un poderoso acto de <span class="text-highlight">resonancia biológica</span>.</p>
+
+  <!-- IMAGE BOX 2 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="sym2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <circle cx="150" cy="125" r="110" fill="url(#sym2)"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(60 150 125)"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(120 150 125)"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(180 150 125)"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(240 150 125)"/>
+  <path d="M150,55 Q170,85 150,125 Q130,85 150,55Z" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8" transform="rotate(300 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(30 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(90 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(150 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(210 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(270 150 125)"/>
+  <path d="M150,65 Q165,90 150,125 Q135,90 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6" transform="rotate(330 150 125)"/>
+  <circle cx="150" cy="125" r="20" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.7"/>
+  <circle cx="150" cy="125" r="8" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="150" cy="125" r="80" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.4" stroke-dasharray="3 5"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Nuestra propia biología no hace más que reconocer el código de origen con el que fue diseñada. Tu cuerpo, tu cerebro y tu agua interna están construidos bajo las mismas reglas de proporción que rigen a la estrella más distante. Al contemplar la naturaleza, la consciencia humana se convierte en el propio universo adquiriendo la maravillosa capacidad de contemplar su esplendor en un espejo.</p>
+
+  <p class="text-body">Mi mayor deseo al entregarte estas páginas es que pases gradualmente de la ilusión del caos a la certeza de la armonía. No encontrarás aquí la imposición de dogmas rígidos ni la frialdad de tratados matemáticos académicos sin alma. En su lugar, caminaremos por un puente donde la evidencia empírica de la física, la biología molecular, la cristalografía y los fractales se entrelazan con la filosofía contemplativa y la práctica viva de tejer estructuras tridimensionales con las manos.</p>
+
+  <p class="text-body">Deseo que, al levantar la vista hacia las nubes o al acariciar la corteza de un árbol en tu camino, recuerdes con profunda alegría y tranquilidad que la misma matemática exacta que estabiliza una galaxia organiza cada una de las células de tu corazón. Te doy la bienvenida a este espacio de exploración. Estás a punto de descubrir que <span class="text-highlight">llevás el código del infinito grabado en tu propio ser.</span></p>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">003</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 1 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap1">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">I</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Uno</span>
+    <h2 class="chapter-title">De la Informática al Hilo</h2>
+    <p class="chapter-subtitle">La Búsqueda del Algoritmo</p>
+  </div>
+
+  <h3 class="section-heading">La mente analítica ante el código</h3>
+
+  <p class="text-body">Existe una conexión profunda e insospechada entre la lógica interna de un código informático y la tensión exacta con la que se sostiene una estructura geométrica tridimensional en el espacio físico. Durante muchos años, mi mente estuvo habituada al pensamiento analítico de los sistemas de información: la arquitectura de software, la lógica de programación, la gestión de variables, los diagramas de flujo y los bucles de optimización. Para un analista de sistemas, el mundo se comprende y se descifra como una red compleja de procesos que buscan la mayor eficiencia, reduciendo el error y eliminando la redundancia.</p>
+
+  <p class="text-body">En el lenguaje de la informática, un sistema es una estructura cerrada de elementos interrelacionados donde cada instrucción tiene un propósito. Si una sola línea de código contiene una falla de sintaxis, la ejecución se detiene o el programa colapsa. La búsqueda de la elegancia en un algoritmo no es un asunto estético secundario; es la búsqueda del camino más corto, limpio y estable para resolver un problema complejo.</p>
+
+  <p class="text-body">Sin embargo, la vida tiene formas sublimes e inesperadas de entrelazar la teoría intelectual con la experiencia tangible del corazón. Mi encuentro definitivo con la geometría no ocurrió dentro de un aula universitaria ni leyendo antiguos tratados de matemáticas en una biblioteca. Nació en el calor de la cotidianeidad y la complicidad compartida junto a mi compañera <span class="text-highlight">Clarisa Cásimo</span>, madre de mi hija Iara Luz.</p>
+
+  <!-- IMAGE BOX 3 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <line x1="0" y1="0" x2="300" y2="250" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="0.3"/>
+  <line x1="300" y1="0" x2="0" y2="250" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="0.3"/>
+  <line x1="150" y1="0" x2="150" y2="250" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.4"/>
+  <line x1="0" y1="125" x2="300" y2="125" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.4"/>
+  <rect x="30" y="25" width="240" height="200" rx="3" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.5"/>
+  <rect x="45" y="40" width="210" height="170" rx="2" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.4"/>
+  <text x="55" y="62" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.2">01001001 10110010</text>
+  <text x="55" y="76" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.25">11010101 00101101</text>
+  <text x="55" y="90" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.3">01101001 10010110</text>
+  <text x="55" y="104" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.35">10100110 01011001</text>
+  <text x="55" y="118" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.4">01110010 11001010</text>
+  <text x="55" y="132" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.45">10010110 01101001</text>
+  <text x="55" y="146" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.5">11010011 01010110</text>
+  <text x="55" y="160" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.55">01101001 10101100</text>
+  <text x="55" y="174" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.6">10110101 01101001</text>
+  <text x="55" y="188" font-family="monospace" font-size="8" fill="#c9a84c" fill-opacity="0.65">01100010 11010011</text>
+  <line x1="50" y1="55" x2="50" y2="195" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.5"/>
+  <circle cx="50" cy="55" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="50" cy="195" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="150" cy="125" r="35" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="1"/>
+  <polygon points="150,90 180,107 180,143 150,160 120,143 120,107" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.8"/>
+  <circle cx="150" cy="125" r="18" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+  <circle cx="150" cy="90" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="180" cy="107" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="180" cy="143" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="150" cy="160" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="120" cy="143" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="120" cy="107" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <line x1="150" y1="90" x2="180" y2="107" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="180" y1="107" x2="180" y2="143" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="180" y1="143" x2="150" y2="160" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="150" y1="160" x2="120" y2="143" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="120" y1="143" x2="120" y2="107" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="120" y1="107" x2="150" y2="90" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Fue Clarisa quien puso por primera vez ante mis ojos un tejido geométrico tridimensional. Era una pieza delicada pero firme, armada con pequeños tubos e hilos que dibujaban una forma poligonal flotando en el aire.</p>
+
+  <p class="text-body">Al contemplar aquella figura, mientras cualquier otra persona hubiera visto simplemente un adorno artesanal o una pieza decorativa, mi mente de analista de sistemas sufrió una sacudida inmediata. No vi una artesanía: reconocí al instante <span class="text-highlight">un sistema tridimensional cerrado</span>. Un entramado de vectores físicos donde las fuerzas de compresión de los tubos y las fuerzas de tracción del hilo debían encontrar una coherencia matemática absoluta para no deformarse ni colapsar.</p>
+
+  <p class="text-body">En ese preciso instante nació una fascinación que me acompañaría durante más de quince años de mi vida: la obsesión por descubrir y perfeccionar <span class="text-highlight">el algoritmo de tejido perfecto</span>.</p>
+
+  <h3 class="section-heading">El problema topológico de la matriz cerrada</h3>
+
+  <p class="text-body">Para quien nunca ha intentado construir un poliedro tridimensional con sus propias manos, la tarea puede parecer un asunto trivial de ensamblaje. Se podría pensar que basta con unir tubos y pasar un hilo a través de ellos de cualquier manera. Pero la realidad de la física geométrica es implacable.</p>
+
+  <p class="text-body">Cuando intentas tejer un cuerpo complejo —como un Icosaedro, un Dodecaedro o una Estrella Octángula (Merkabah)— te enfrentas a un problema topológico de alta complejidad. La pregunta analítica que se convirtió en mi desvelo junto a Clarisa fue la siguiente:</p>
+
+  <div class="blockquote">
+    <p>¿Cómo lograr que un único hilo continuo recorra absolutamente todas las aristas de un poliedro tridimensional, pasando la menor cantidad de veces posible por cada vértice, distribuyendo la tensión de forma milimétricamente idéntica en todos los nodos y logrando que la figura se autosostenga sin nudos flojos ni deformaciones?</p>
+  </div>
+
+  <!-- IMAGE BOX 4 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="node4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <polygon points="150,30 240,80 210,180 90,180 60,80" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <polygon points="150,30 240,80 190,110 110,110 60,80" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.5"/>
+  <polygon points="150,30 190,110 150,180 110,110" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <polygon points="90,180 110,110 150,180" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <polygon points="210,180 190,110 150,180" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="150" y1="30" x2="150" y2="180" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="60" y1="80" x2="210" y2="180" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="240" y1="80" x2="90" y2="180" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <circle cx="150" cy="30" r="8" fill="url(#node4)" opacity="0.7"/>
+  <circle cx="240" cy="80" r="8" fill="url(#node4)" opacity="0.7"/>
+  <circle cx="210" cy="180" r="8" fill="url(#node4)" opacity="0.7"/>
+  <circle cx="90" cy="180" r="8" fill="url(#node4)" opacity="0.7"/>
+  <circle cx="60" cy="80" r="8" fill="url(#node4)" opacity="0.7"/>
+  <circle cx="190" cy="110" r="6" fill="url(#node4)" opacity="0.5"/>
+  <circle cx="110" cy="110" r="6" fill="url(#node4)" opacity="0.5"/>
+  <circle cx="150" cy="180" r="6" fill="url(#node4)" opacity="0.5"/>
+  <circle cx="150" cy="30" r="3" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="240" cy="80" r="3" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="210" cy="180" r="3" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="90" cy="180" r="3" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="60" cy="80" r="3" fill="#c9a84c" opacity="0.9"/>
+  <circle cx="190" cy="110" r="2" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="110" cy="110" r="2" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="150" cy="180" r="2" fill="#c9a84c" opacity="0.7"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">No era un desafío decorativo. Era un problema de optimización de rutas y física de materiales en el espacio real. Si pasas el hilo tres veces por un tubo y solo una vez por el tubo adyacente, la acumulación de grosor desalinea los vértices. Si tensionas demasiado una arista del hemisferio superior, deformas la base inferior. El poliedro es un organismo vivo de fuerzas: lo que le haces a un nodo repercute instantáneamente en toda la estructura.</p>
+
+  <p class="text-body">Comenzamos a probar, a dibujar diagramas de secuencia, a mapear los vértices como si fueran nodos de una red de computadoras. Nos dimos cuenta de que existían "caminos ciegos" donde el hilo quedaba atrapado, obligando a cortar la tanza o a hacer nudos antiestéticos que rompían la pureza del flujo. Necesitábamos encontrar la sintaxis exacta, el bucle perfecto que permitiera tejer la geometría entera en un flujo continuo y armónico.</p>
+
+  <h3 class="section-heading">La pedagogía del error y el desarmado</h3>
+
+  <p class="text-body">Fueron incontables las tardes y las noches en las que tuve que desarmar por completo una figura a medio terminar. Tenía entre mis manos horas de trabajo, decenas de tubos de acero inoxidable alineados y canutillos de vidrio ensartados uno a uno con infinita paciencia, pero al llegar al último tramo, descubría que la tensión final no cerraba correctamente o que la figura presentaba una ligera torsión imperceptible a simple vista pero letal para su simetría.</p>
+
+  <p class="text-body">En el desarrollo de software, cuando cometes un error en el código, el compilador te marca una alerta y corrige la línea. En la geometría física tridimensional, <span class="text-highlight">el compilador es la gravedad y la tensión del hilo</span>. Un solo milímetro de desvío o un tramo con menos presión destruye la estabilidad de toda la matriz.</p>
+
+  <p class="text-body">Al principio, desarmar una figura generaba la frustración inevitable del principiante. Sentías que habías perdido el tiempo, que el material se resistía, que la teoría fallaba. Pero con el paso del tiempo, el acto de desarmar se convirtió en mi mayor maestro. Entendí que el desarme no era un fracaso, sino la única pedagogía real para comprender la física oculta detrás de la forma.</p>
+
+  <p class="text-body">Cada vez que desarmábamos una figura junto a Clarisa, el material nos hablaba. Descubríamos exactamente en qué punto la estructura había acumulado demasiada tensión, dónde el hilo había sufrido fricción excesiva y qué secuencia de pases era la que garantizaba la estabilidad. Aprendimos a respetar la naturaleza del acero y la fragilidad del vidrio.</p>
+
+  <p class="text-body">No estábamos imponiendo nuestra voluntad sobre los materiales; estábamos aprendiendo a dialogar con las leyes geométricas del espacio. Hasta que, finalmente, tras infinitas pruebas, correcciones y ajustes, el algoritmo sintáctico quedó descifrado. <span class="text-highlight">Habíamos encontrado la secuencia lineal capaz de desplegar la tridimensionalidad con absoluta elegancia.</span></p>
+
+  <!-- IMAGE BOX 5 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <path d="M70,200 Q60,170 55,140 Q50,110 65,90 Q80,70 100,65" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M100,65 Q110,62 115,58 Q118,55 115,52 Q112,49 108,52 Q104,55 108,60" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1.2"/>
+  <path d="M100,65 Q115,60 120,55 Q123,52 120,49 Q117,46 113,49 Q110,52 114,57" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1.2"/>
+  <path d="M230,200 Q240,170 245,140 Q250,110 235,90 Q220,70 200,65" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M200,65 Q190,62 185,58 Q182,55 185,52 Q188,49 192,52 Q196,55 192,60" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1.2"/>
+  <path d="M200,65 Q185,60 180,55 Q177,52 180,49 Q183,46 187,49 Q190,52 186,57" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1.2"/>
+  <path d="M105,68 Q130,50 150,55 Q170,50 195,68" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <path d="M100,80 Q130,65 150,70 Q170,65 200,80" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6" stroke-dasharray="3 4"/>
+  <path d="M108,90 Q130,78 150,82 Q170,78 192,90" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5" stroke-dasharray="2 3"/>
+  <path d="M110,100 Q130,90 150,94 Q170,90 190,100" fill="none" stroke="#c9a84c" stroke-opacity="0.18" stroke-width="0.5"/>
+  <path d="M115,110 Q130,102 150,105 Q170,102 185,110" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <circle cx="150" cy="80" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.5" stroke-dasharray="5 5"/>
+  <polygon points="150,50 180,70 180,100 150,120 120,100 120,70" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <circle cx="150" cy="85" r="3" fill="#c9a84c" fill-opacity="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">007</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 2 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap2">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">II</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Dos</span>
+    <h2 class="chapter-title">¿Orden o Caos?</h2>
+    <p class="chapter-subtitle">La Ilusión del Azar</p>
+  </div>
+
+  <h3 class="section-heading">La paradoja de la entropía y la mirada reduccionista</h3>
+
+  <p class="text-body">Te invito a detenerte un instante en tu rutina diaria y salir a observar el mundo natural sin los filtros de la prisa. Observa con detenimiento las ramas de un quebracho o de un algarrobo recortándose contra el cielo al atardecer, el curso libre y serpenteante de un río montañoso abriéndose paso entre las rocas, o el contorno efímero y cambiante de una nube impulsada por el viento.</p>
+
+  <p class="text-body">Durante siglos, el pensamiento científico dominante y la filosofía mecanicista derivada de la Revolución Industrial nos han repetido un dogma reconfortante para el ego humano: la idea de que la naturaleza es un cúmulo de entropía ciega, una mezcla de accidentes biológicos y físicos donde la vida lucha desesperadamente por imponer un orden temporal sobre un fondo de caos absoluto y destructivo.</p>
+
+  <!-- IMAGE BOX 6 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <path d="M-10,30 Q40,30 60,60 Q80,90 60,120 Q40,150 80,170 Q120,190 140,160 Q160,130 200,130 Q240,130 260,100 Q280,70 310,70" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="20" stroke-linecap="round"/>
+  <path d="M-10,30 Q40,30 60,60 Q80,90 60,120 Q40,150 80,170 Q120,190 140,160 Q160,130 200,130 Q240,130 260,100 Q280,70 310,70" fill="none" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="30" stroke-linecap="round"/>
+  <path d="M-10,30 Q40,30 60,60 Q80,90 60,120 Q40,150 80,170 Q120,190 140,160 Q160,130 200,130 Q240,130 260,100 Q280,70 310,70" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M-10,35 Q40,35 58,64 Q76,94 58,124 Q38,154 78,174 Q118,194 138,164 Q158,134 198,134 Q238,134 258,104 Q278,74 310,75" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6" stroke-linecap="round"/>
+  <path d="M-10,25 Q40,25 62,56 Q84,86 62,116 Q42,146 82,166 Q122,186 142,156 Q162,126 202,126 Q242,126 262,96 Q282,66 310,65" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6" stroke-linecap="round"/>
+  <circle cx="60" cy="90" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="70" cy="160" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="170" cy="130" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="260" cy="85" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <path d="M30,200 Q50,190 70,195 Q90,200 110,190 Q130,180 150,185 Q170,190 190,180 Q210,170 230,175 Q250,180 270,170" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.5"/>
+  <path d="M30,210 Q50,200 70,205 Q90,210 110,200 Q130,190 150,195 Q170,200 190,190 Q210,180 230,185 Q250,190 270,180" fill="none" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.4"/>
+  <path d="M30,220 Q50,210 70,215 Q90,220 110,210 Q130,200 150,205 Q170,210 190,200 Q210,190 230,195 Q250,200 270,190" fill="none" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Nos han enseñado a ver el mundo como un reloj descompuesto o como un juego de dados cósmico donde las cosas suceden por pura coincidencia genética o mecánica. Es comprensible que, bajo esta premisa reduccionista, la mente humana se sienta profundamente sola, desamparada y ajena al planeta que habita. Si todo es azar, si la forma de un árbol o la estructura de una roca son simples accidentes sin sintaxis, entonces nada tiene un sentido intrínseco.</p>
+
+  <p class="text-body">Sin embargo, cuando nos atrevemos a ir más allá de la observación superficial y aplicamos las herramientas de la física moderna, la dinámica de fluidos y la geometría no euclidiana, la supuesta "entropía caótica" comienza a disolverse. Nos damos cuenta de que <span class="text-highlight">el caos no es la ausencia de orden; es, en realidad, un nivel de complejidad matemática tan elevado</span> y bellamente entrelazado que la percepción humana convencional aún no ha terminado de decodificar.</p>
+
+  <p class="text-body">La Naturaleza no conoce el desorden en el sentido humano de la palabra. Lo que solemos calificar de "caótico" es simplemente una estructura cuyos patrones de autorregulación y optimización energética se despliegan en múltiples dimensiones o escalas que escapan a nuestra vista inmediata.</p>
+
+  <h3 class="section-heading">La gramática invisible del flujo</h3>
+
+  <p class="text-body">Cuando un líquido fluye a través de un cauce o cuando el aire circula alrededor del ala de un ave, no se mueve de manera caprichosa. Sigue líneas de corriente que responden a ecuaciones precisas de menor resistencia. Un río no serpentea porque "no sabe adónde ir"; serpentea porque la dinámica de fluidos exige que el agua distribuya la energía cinética a lo largo del terreno para evitar la erosión destructiva y mantener la velocidad constante. <span class="text-highlight">La espiral y la curva no son caprichos estéticos: son soluciones físicas para la conservación de la energía.</span></p>
+
+  <p class="text-body">En la escala atmosférica ocurre exactamente lo mismo. Un huracán visto desde el espacio muestra la forma inconfundible de una espiral logarítmica. ¿Por qué una masa de aire masiva en la atmósfera adopta la misma proporción que la caracola marina en el océano o el centro de un girasol en el campo? La respuesta es simple y profunda: porque la geometría de la espiral es la única forma espacial que permite a la materia concentrarse o expandirse manteniendo el equilibrio dinámico sin colapsar por fricción.</p>
+
+  <!-- IMAGE BOX 7 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#0a0a10"/>
+  <path d="M120,125 Q120,105 135,100 Q150,95 155,110 Q160,125 145,130 Q130,135 128,118 Q126,105 140,98 Q158,92 162,110 Q166,128 148,134 Q130,140 125,120 Q120,102 142,94 Q165,88 170,110 Q175,132 152,140 Q128,146 122,122" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1.5"/>
+  <path d="M120,125 Q118,95 142,82 Q168,72 178,102 Q188,135 155,148 Q120,158 115,125" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="3"/>
+  <path d="M120,125 Q115,82 150,65 Q192,52 205,98 Q218,148 160,165 Q102,178 112,125" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="4"/>
+  <path d="M220,195 Q220,178 232,174 Q244,170 248,182 Q252,194 240,198 Q228,202 226,190 Q224,180 236,176 Q248,172 252,184 Q256,196 242,200" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.2"/>
+  <path d="M220,195 Q218,170 240,162 Q264,156 270,178 Q276,202 248,210 Q220,216 218,192" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="2.5"/>
+  <circle cx="120" cy="125" r="2.5" fill="#c9a84c" fill-opacity="0.6"/>
+  <circle cx="220" cy="195" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <path d="M20,40 Q40,35 55,45 Q70,55 65,70 Q60,85 45,80 Q30,75 35,60 Q40,45 55,42 Q70,39 75,55 Q80,71 60,78" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.8"/>
+  <circle cx="48" cy="58" r="1" fill="#c9a84c" fill-opacity="0.3"/>
+  <text x="80" y="130" font-family="serif" font-size="7" fill="#c9a84c" fill-opacity="0.2" font-style="italic">φ</text>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Al cambiar nuestro marco de observación, la naturaleza deja de ser un escenario caótico y se revela como una sinfonía de leyes matemáticas en acción. Lo que antes clasificábamos como confusión se transforma ante nuestros ojos en una red matemática interconectada. Hay una gramática invisible sosteniendo el tejido de la realidad, un código de proporciones que optimiza cada partícula de masa y cada pulso de energía.</p>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">013</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 3 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap3">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">III</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Tres</span>
+    <h2 class="chapter-title">La Esfera y el Silencio</h2>
+    <p class="chapter-subtitle">La Física de la Tensión</p>
+  </div>
+
+  <h3 class="section-heading">El centro primordial y la forma cero</h3>
+
+  <p class="text-body">Para comenzar a decodificar este lenguaje sagrado con rigor y claridad, debemos viajar mentalmente al origen de todas las formas geométricas posibles: al estado de preexistencia. Este no es un estado de vacío inerte en el sentido de la carencia o la nada; es, por el contrario, un centro silencioso y rebosante de puro potencial. Es el punto adimensional donde todas las fuerzas se encuentran en absoluto equilibrio, un espacio de equidistancia perfecta donde ninguna dirección o dimensión prevalece sobre la otra.</p>
+
+  <p class="text-body">Es desde este silencio primordial, desde esta quietud receptiva, que emerge el primer impulso de manifestación de la materia en el espacio tridimensional. Y la primera forma que encarna esta transición es <span class="text-highlight">la Esfera</span>.</p>
+
+  <!-- IMAGE BOX 8 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="sphere8" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#c9a84c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="100" fill="url(#sphere8)"/>
+  <line x1="150" y1="125" x2="150" y2="15" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <line x1="150" y1="125" x2="240" y2="40" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="275" y2="110" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="260" y2="200" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="190" y2="240" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="60" y2="40" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="25" y2="110" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="40" y2="200" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="110" y2="240" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="15" y2="15" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="285" y2="15" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="285" y2="235" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="15" y2="235" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <circle cx="150" cy="125" r="55" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.8"/>
+  <circle cx="150" cy="125" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+  <circle cx="150" cy="125" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="10" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="150" cy="125" r="4" fill="#c9a84c" fill-opacity="0.6"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Desde la Antigüedad más remota, en las escuelas de sabiduría como la pitagórica o la platónica, la esfera no era considerada un simple cuerpo geométrico para dibujar en una pizarra académica. Era venerada como la expresión máxima de la armonía y la paz, la forma sagrada por excelencia. La razón de esta reverencia no es mística en el sentido vago, sino profundamente física y matemática: la esfera es el único cuerpo tridimensional en el cual cada uno de los puntos de su superficie exterior se encuentra exactamente a la misma distancia de un único punto central fija.</p>
+
+  <p class="text-body">Esta propiedad única convierte a la esfera en la solución perfecta que la física del universo utiliza para contener la energía. En la mecánica de fluidos, la tensión superficial de una gota de agua que flota en ingravidez la obliga de forma espontánea a tomar la forma de una esfera impecable. ¿Por qué? Porque <span class="text-highlight">la esfera es la figura geométrica que encierra el mayor volumen posible utilizando la menor cantidad de superficie exterior</span>. Minimiza el gasto de energía y maximiza la resistencia estructural.</p>
+
+  <h3 class="section-heading">La tensión viva en el taller</h3>
+
+  <p class="text-body">La esfera no es una forma rígida; es un equilibrio dinámico de presiones. Distribuye las fuerzas externas que la impactan a lo largo de toda su curvatura de manera uniforme, sin permitir que la carga se acumule en un solo punto débil. Por eso una burbuja de jabón o una gota de lluvia pueden sostenerse en el aire: porque su centro mantiene las presiones equilibradas en 360 grados.</p>
+
+  <!-- IMAGE BOX 9 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="drop9" cx="40%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#c9a84c" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#08080e"/>
+  <ellipse cx="150" cy="130" rx="42" ry="50" fill="url(#drop9)"/>
+  <ellipse cx="150" cy="130" rx="42" ry="50" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1"/>
+  <ellipse cx="142" cy="118" rx="12" ry="8" fill="#c9a84c" fill-opacity="0.06" transform="rotate(-15 142 118)"/>
+  <ellipse cx="150" cy="130" rx="32" ry="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5" stroke-dasharray="2 3"/>
+  <ellipse cx="150" cy="130" rx="55" ry="65" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.4"/>
+  <ellipse cx="150" cy="130" rx="70" ry="82" fill="none" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <ellipse cx="150" cy="130" rx="85" ry="98" fill="none" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="0.3"/>
+  <line x1="150" y1="70" x2="150" y2="30" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="150" y1="195" x2="150" y2="235" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="100" y1="130" x2="55" y2="130" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="200" y1="130" x2="245" y2="130" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="115" y1="90" x2="85" y2="60" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <line x1="185" y1="90" x2="215" y2="60" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <line x1="115" y1="170" x2="85" y2="200" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <line x1="185" y1="170" x2="215" y2="200" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Esta lección de la física natural se vuelve maravillosamente tangible cuando nos sentamos a tejer una estructura esférica en el taller de Icho Cruz. Cuando trabajas con tubos de acero inoxidable e hilos de alta resistencia para dar forma a un poliedro esférico (como un Icosaedro truncado o una esfera geodésica), experimentas la ley de la tensión en la punta de tus propios dedos.</p>
+
+  <p class="text-body">Si aplicas demasiado tirón en uno de los vértices superiores de la estructura, la deformación no se queda en ese lugar: se desplaza en forma de onda y aplasta el polo opuesto de la esfera. Si dejas un tramo de hilo con poca tensión, el hemisferio entero pierde su curvatura y se vuelve plano. Para que la esfera se sostenga flotando en el aire con firmeza y elegancia, el artesano debe aprender a aplicar una fuerza milimétricamente homogénea en cada uno de los nodos.</p>
+
+  <p class="text-body">Tejer la esfera se convierte así en una lección sobre el equilibrio personal. Aprendes que la estabilidad no se logra mediante la rigidez dura e inflexible, sino mediante la distribución armónica de la tensión. <span class="text-highlight">La esfera te enseña que para sostener la forma en el mundo externo, primero debes aprender a habitar el centro silencioso de tu propia estructura interior.</span></p>
+
+  <!-- IMAGE BOX 10 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="geo10" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="95" fill="url(#geo10)"/>
+  <circle cx="150" cy="125" r="95" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+  <polygon points="150,30 210,75 240,140 210,200 90,200 60,140 90,75" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="150" y1="30" x2="150" y2="200" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="90" y1="75" x2="210" y2="200" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="210" y1="75" x2="90" y2="200" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="60" y1="140" x2="240" y2="140" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="90" y1="75" x2="210" y2="75" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <polygon points="150,55 195,85 195,155 150,185 105,155 105,85" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <line x1="150" y1="55" x2="150" y2="185" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="105" y1="85" x2="195" y2="155" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="195" y1="85" x2="105" y2="155" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <polygon points="150,80 175,95 175,140 150,155 125,140 125,95" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="15" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="5" fill="#c9a84c" fill-opacity="0.2"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">017</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 4 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap4">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">IV</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Cuatro</span>
+    <h2 class="chapter-title">Fibonacci, la Constante Phi</h2>
+    <p class="chapter-subtitle">Y la Matriz del ADN</p>
+  </div>
+
+  <h3 class="section-heading">La matemática de la optimización viva</h3>
+
+  <p class="text-body">Observa con detenimiento cómo se expande la vida vegetal a tu alrededor. Nota la disposición milimétrica en la que un tallo distribuye sus hojas a medida que crece hacia el cielo, o la arquitectura espiralada con la que se organizan las escamas de una piña de pino. Durante mucho tiempo se asumió que este empaquetamiento era un proceso aleatorio, una simple suma de crecimientos biológicos caóticos sin reglas fijas.</p>
+
+  <p class="text-body">Sin embargo, la Naturaleza no improvisa ni derrocha recursos en lo absurdo. En cada movimiento biológico existe una eficiencia matemática impecable: cada nueva célula, cada semilla y cada pétalo requiere ubicarse en la posición exacta que le permita recibir la máxima cantidad de luz solar, captar el agua de lluvia sin tapar a las capas inferiores y optimizar el espacio tridimensional con el menor gasto de energía posible.</p>
+
+  <p class="text-body">A este fenómeno de distribución foliar los botánicos lo llaman <span class="text-highlight">filotaxis</span>. Y cuando se analiza el ángulo exacto con el que brota cada hoja respecto a la anterior, descubrimos una constante asombrosa: un giro de aproximadamente <span class="text-formula">137.5°</span>, conocido como el <span class="text-highlight">Ángulo Áureo</span>.</p>
+
+  <p class="text-body">En el corazón de este algoritmo vegetal se encuentra una serie numérica popularizada en Occidente por Leonardo de Pisa, conocido como <span class="text-highlight">Fibonacci</span>. La regla de esta secuencia es de una sencillez sublime: cada número es el resultado de la suma de los dos anteriores.</p>
+
+  <div class="blockquote">
+    <p>1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...</p>
+  </div>
+
+  <p class="text-body">A medida que esta progresión avanza hacia el infinito, la división de cualquier término por su número predecesor converge de forma ineludible en el número irracional conocido como la <span class="text-highlight">Proporción Áurea</span>, representado por la letra griega Phi:</p>
+
+  <p class="text-body text-center" style="font-size: 1.2rem;">
+    <span class="text-formula" style="font-size: 1.3rem; padding: 0.3rem 1rem;">Φ = 1.618033...</span>
+  </p>
+
+  <p class="text-body">Phi no es un concepto estético inventado por el arte humano; es la frecuencia geométrica que le permite a la materia crecer y expandirse de forma autosimilar. Es la constante que garantiza que un organismo pueda aumentar su tamaño de forma indefinida sin perder jamás su centro de gravedad, su simetría ni su estabilidad estructural original.</p>
+
+  <!-- IMAGE BOX 11 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <rect x="90" y="60" width="120" height="120" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <rect x="90" y="60" width="74" height="74" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="164" y="60" width="46" height="46" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="164" y="106" width="28" height="28" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="136" y="106" width="28" height="28" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="90" y="134" width="46" height="46" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="136" y="134" width="28" height="28" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <rect x="90" y="106" width="46" height="28" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <path d="M90,180 Q90,60 210,60" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1.8"/>
+  <path d="M164,60 Q164,106 110,106" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.5"/>
+  <path d="M164,106 Q164,134 192,134" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1.3"/>
+  <path d="M164,134 Q136,134 136,106" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="1.1"/>
+  <path d="M136,134 Q136,106 90,106" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.9"/>
+  <path d="M136,106 Q90,106 90,134" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <circle cx="150" cy="125" r="90" fill="none" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3" stroke-dasharray="2 4"/>
+  <text x="150" y="210" font-family="serif" font-size="9" fill="#c9a84c" fill-opacity="0.25" text-anchor="middle" font-style="italic">Φ = 1.618...</text>
+</svg>
+    </div>
+  </div>
+
+  <h3 class="section-heading">El código divino en la escala molecular</h3>
+
+  <p class="text-body">Lo más conmovedor de esta gramática es que no se limita al mundo botánico ni al diseño de las conchas marinas. Esta misma matemática está impresa en lo más íntimo de nuestra propia arquitectura biológica.</p>
+
+  <p class="text-body">Cuando la biología molecular contemporánea logró medir las dimensiones exactas de la doble hélice de la molécula de ADN humano, descubrió una relación geométrica fascinante: un ciclo completo de la espiral del ADN mide exactamente <span class="text-formula">34 Å</span> (34 ángstroms) de longitud, mientras que el ancho de la hélice mide exactamente <span class="text-formula">21 Å</span>.</p>
+
+  <p class="text-body">Tanto el 34 como el 21 son números consecutivos de la Secuencia de Fibonacci. La razón de su división (<span class="text-formula">34 / 21 ≈ 1.619</span>) encarna directamente la Proporción Áurea Φ. <span class="text-highlight">La matriz que guarda el código genético de toda la vida en la Tierra se enrolla y se empaqueta bajo la misma constante matemática que rige la forma de los girasoles y la trayectoria de los huracanes.</span></p>
+
+  <!-- IMAGE BOX 12 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <defs>
+    <radialGradient id="dna12" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="110" fill="url(#dna12)"/>
+  <path d="M110,20 Q110,50 140,65 Q170,80 170,110 Q170,140 140,155 Q110,170 110,200 Q110,230 140,245" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1.5"/>
+  <path d="M190,20 Q190,50 160,65 Q130,80 130,110 Q130,140 160,155 Q190,170 190,200 Q190,230 160,245" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1.5"/>
+  <line x1="115" y1="35" x2="185" y2="35" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.6"/>
+  <line x1="118" y1="55" x2="182" y2="55" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+  <line x1="128" y1="75" x2="172" y2="75" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <line x1="135" y1="95" x2="165" y2="95" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <line x1="130" y1="115" x2="170" y2="115" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <line x1="118" y1="135" x2="182" y2="135" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+  <line x1="112" y1="155" x2="188" y2="155" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.6"/>
+  <line x1="112" y1="175" x2="188" y2="175" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+  <line x1="115" y1="195" x2="185" y2="195" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <line x1="125" y1="215" x2="175" y2="215" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+  <line x1="132" y1="235" x2="168" y2="235" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.6"/>
+  <circle cx="110" cy="35" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="190" cy="35" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="130" cy="75" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="170" cy="75" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="135" cy="115" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="165" cy="115" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="112" cy="155" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="188" cy="155" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="115" cy="195" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="185" cy="195" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="125" cy="235" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="175" cy="235" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+</svg>
+    </div>
+  </div>
+
+  <h3 class="section-heading">La geometría fractal y la Ley de Correspondencia</h3>
+
+  <p class="text-body">El descubrimiento de la geometría fractal por el matemático Benoit Mandelbrot a finales del siglo XX vino a confirmar lo que la filosofía contemplativa intuía desde hacía milenios. Las nubes no son esferas perfectas, las montañas no son conos limpios y los relámpagos no viajan en línea recta. La Naturaleza se expresa a través de <span class="text-highlight">fractales</span>: formas complejas donde cada pequeña parte replica la estructura del conjunto entero a diferentes escalas.</p>
+
+  <p class="text-body">Esta autosimilitud fractal es palpable dentro de nuestro propio organismo. El árbol bronquial en nuestros pulmones y la vasta red de vasos sanguíneos en nuestro sistema circulatorio se ramifican siguiendo algoritmos fractales exactos. Se vuelven cada vez más finos hasta alcanzar la escala capilar, logrando cubrir una superficie masiva de intercambio de oxígeno dentro del espacio reducido del tórax.</p>
+
+  <p class="text-body">Aquí es donde la investigación científica y la contemplación filosófica se abrazan. La geometría fractal es la demostración física de la antigua <span class="text-highlight">Ley de Correspondencia: "Como es arriba, es abajo"</span>. Un fractal prueba que el fragmento más diminuto contiene la información, la proporción y la belleza de la totalidad.</p>
+
+  <p class="text-body">Al comprender que estamos construidos bajo estas leyes, la ilusión del aislamiento se desvanece. No eres un transeúnte extraviado en un cosmos ajeno y caótico; eres <span class="text-highlight">un fractal vivo</span>, una obra de arte consciente que lleva el código del universo impreso en cada una de sus células.</p>
+
+  <!-- IMAGE BOX 13 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <line x1="150" y1="240" x2="150" y2="180" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="2"/>
+  <line x1="150" y1="180" x2="115" y2="140" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.5"/>
+  <line x1="150" y1="180" x2="185" y2="140" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.5"/>
+  <line x1="115" y1="140" x2="90" y2="105" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="115" y1="140" x2="130" y2="105" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="185" y1="140" x2="170" y2="105" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="185" y1="140" x2="210" y2="105" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="1"/>
+  <line x1="90" y1="105" x2="75" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="90" y1="105" x2="100" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="130" y1="105" x2="120" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="130" y1="105" x2="140" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="170" y1="105" x2="160" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="170" y1="105" x2="180" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="210" y1="105" x2="200" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="210" y1="105" x2="225" y2="75" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <line x1="75" y1="75" x2="65" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="75" y1="75" x2="80" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="100" y1="75" x2="93" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="100" y1="75" x2="108" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="120" y1="75" x2="113" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="140" y1="75" x2="135" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="160" y1="75" x2="155" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="180" y1="75" x2="173" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="200" y1="75" x2="193" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="225" y1="75" x2="218" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="225" y1="75" x2="235" y2="50" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <circle cx="65" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="80" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="93" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="108" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="113" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="135" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="155" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="173" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="193" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="218" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="235" cy="48" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">021</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 5 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap5">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">V</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Cinco</span>
+    <h2 class="chapter-title">Cimática</h2>
+    <p class="chapter-subtitle">Cuando la Frecuencia Organiza la Materia</p>
+  </div>
+
+  <h3 class="section-heading">El puente entre la vibración invisible y la forma tangible</h3>
+
+  <p class="text-body">Si el origen de la creación es un silencio primordial o un centro de puro potencial, la pregunta fundamental que surge es: ¿de qué manera ese estado incorpóreo se transforma en materia sólida y estructurada? La respuesta la encontramos en las enseñanzas ancestrales que afirmaban que en el principio de todo existió una Frecuencia, un Verbo o una Vibración primordial. La forma que tocamos y vemos en el mundo físico es simplemente la manifestación congelada de una frecuencia en el espacio.</p>
+
+  <p class="text-body">Hoy en día, este principio ha dejado de ser una especulación filosófica para convertirse en una realidad demostrable en el laboratorio a través de la <span class="text-highlight">cimática</span>, el estudio del fenómeno de las ondas sonoras sobre la materia.</p>
+
+  <p class="text-body">Cuando colocas una fina capa de materia informe —como arena, polvo de licopodio o agua— sobre una placa metálica (conocida como Placa de Chladni) y la sometes a la vibración de un tono acústico puro, la materia no se dispersa de forma caótica. Por el contrario, las partículas comienzan a moverse y se organizan espontáneamente en mandalas geométricos de una simetría y belleza deslumbrantes.</p>
+
+  <p class="text-body">A medida que aumentas la frecuencia expresada en hercios (<span class="text-formula">Hz</span>), la materia sobre la placa se reorganiza de inmediato, pasando de polígonos sencillos a complejas flores geométricas y patrones fractales. Las partículas se desplazan desde las zonas de mayor vibración hacia los llamados <span class="text-highlight">nodos nulos</span> o puntos de reposo, donde la onda se anula a sí misma.</p>
+
+  <!-- IMAGE BOX 14 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="100" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.4"/>
+  <circle cx="150" cy="125" r="80" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.4"/>
+  <circle cx="150" cy="125" r="60" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="20" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+  <line x1="150" y1="25" x2="150" y2="225" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="50" y1="125" x2="250" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <line x1="79" y1="54" x2="221" y2="196" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <line x1="221" y1="54" x2="79" y2="196" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.3"/>
+  <path d="M150,25 Q200,75 250,125 Q200,175 150,225 Q100,175 50,125 Q100,75 150,25Z" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.8"/>
+  <path d="M150,45 Q190,85 230,125 Q190,165 150,205 Q110,165 70,125 Q110,85 150,45Z" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+  <path d="M150,65 Q180,95 210,125 Q180,155 150,185 Q120,155 90,125 Q120,95 150,65Z" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <path d="M150,85 Q168,105 185,125 Q168,145 150,165 Q132,145 115,125 Q132,105 150,85Z" fill="none" stroke="#c9a84c" stroke-opacity="0.18" stroke-width="0.6"/>
+  <circle cx="150" cy="125" r="5" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="150" cy="25" r="2" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="250" cy="125" r="2" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="150" cy="225" r="2" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="50" cy="125" r="2" fill="#c9a84c" fill-opacity="0.4"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">La cimática nos demuestra que el sonido no es una abstracción que flota en el aire; es una fuerza organizadora tridimensional. <span class="text-highlight">La forma visible es la geometría del sonido haciéndose tangible.</span></p>
+
+  <h3 class="section-heading">El ser humano como instrumento resonante</h3>
+
+  <p class="text-body">Al comprender la física de la cimática, nos damos cuenta de que el cuerpo humano —compuesto en más de un 70% por agua— es un instrumento biológico de alta sensibilidad resonante. El ritmo de nuestra respiración, la cualidad de nuestras emociones y el tono de nuestras palabras generan ondas de presión que organizan o desorganizan nuestra estructura interna.</p>
+
+  <p class="text-body">Esta ley física se experimenta con total claridad en la práctica manual del taller. Cuando tejemos una estructura tridimensional con tubos de acero inoxidable y tanza de alta resistencia, estamos ejecutando un proceso similar al de la cimática. Cada pase del hilo, cada ajuste de tensión en las aristas genera una "frecuencia de carga" en la figura.</p>
+
+  <p class="text-body">Si la tensión aplicada es desigual, la figura emite una distorsión visual y física; pero cuando el hilo alcanza el ajuste exacto en todos sus vértices, los tubos entran en un estado de <span class="text-highlight">coherencia de fase</span>. La figura se vuelve firme, resuena al tacto y proyecta un equilibrio que transmite una paz inmediata a quien la contempla.</p>
+
+  <p class="text-body text-italic">No estamos simplemente armando piezas de acero y cristal; estamos afinando un receptor de geometría viva.</p>
+
+  <!-- IMAGE BOX 15 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="15" fill="#c9a84c" fill-opacity="0.15"/>
+  <circle cx="150" cy="125" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1.2"/>
+  <circle cx="150" cy="125" r="38" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="1"/>
+  <circle cx="150" cy="125" r="52" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.9"/>
+  <circle cx="150" cy="125" r="67" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.8"/>
+  <circle cx="150" cy="125" r="83" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.7"/>
+  <circle cx="150" cy="125" r="100" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.6"/>
+  <circle cx="150" cy="125" r="118" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="137" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="150" y2="15" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="150" y2="235" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="13" y2="125" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="287" y2="125" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">027</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 6 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap6">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">VI</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Seis</span>
+    <h2 class="chapter-title">Los Sólidos Platónicos</h2>
+    <p class="chapter-subtitle">Y la Cristalografía Real</p>
+  </div>
+
+  <h3 class="section-heading">Los bloques fundamentales de la tridimensionalidad</h3>
+
+  <p class="text-body">En el ámbito de la geometría tridimensional existe un grupo de formas absolutamente único y privilegiado. De entre las infinitas figuras posibles en el espacio, solo existen cinco poliedros convexos cuyas caras son polígonos regulares exactamente iguales entre sí, y donde todos sus ángulos interiores y vértices coinciden con absoluta precisión.</p>
+
+  <p class="text-body">Conocidos históricamente como los <span class="text-highlight">Sólidos Platónicos</span>, estos cinco cuerpos son:</p>
+
+  <ul class="text-list">
+    <li><span class="list-highlight">El Tetraedro</span> — 4 caras triangulares</li>
+    <li><span class="list-highlight">El Cubo o Hexaedro</span> — 6 caras cuadradas</li>
+    <li><span class="list-highlight">El Octaedro</span> — 8 caras triangulares</li>
+    <li><span class="list-highlight">El Icosaedro</span> — 20 caras triangulares</li>
+    <li><span class="list-highlight">El Dodecaedro</span> — 12 caras pentagonales</li>
+  </ul>
+
+  <p class="text-body">En el diálogo Timeo, Platón propuso una intuición poética y filosófica que resonó durante siglos: asoció cada uno de estos sólidos a los elementos constitutivos del cosmos (el Tetraedro al Fuego por su naturaleza punzante; el Cubo a la Tierra por su estabilidad sólida; el Octaedro al Aire por su levedad; el Icosaedro al Agua por su fluidez casi esférica; y el Dodecaedro al Éter o la totalidad del cosmos).</p>
+
+  <p class="text-body">Sin embargo, para construir una obra seria y perdurable, debemos marcar un límite claro entre el valor simbólico o histórico de estas metáforas y la realidad de la ciencia empírica. <span class="text-highlight">La verdadera fascinación de los sólidos platónicos no radica en la especulación esotérica, sino en el hecho de que la física moderna y la cristalografía han demostrado que estas cinco formas son los bloques de empaquetamiento fundamental de la materia atómica.</span></p>
+
+  <h3 class="section-heading">La física del menor gasto energético</h3>
+
+  <p class="text-body">La naturaleza no utiliza los sólidos platónicos por una razón mística abstracta, sino por el principio de mínima acción y menor gasto de energía.</p>
+
+  <p class="text-body">Cuando los átomos de un mineral se organizan para formar una red cristalina sólida, buscan la configuración espacial que les permita empaquetarse distribuyendo las fuerzas electrostáticas con el mayor equilibrio posible. Es por esto que la sal común (NaCl) cristaliza en redes cúbicas perfectas; la pirita y la fluorita forman octaedros y cubos de precisión geométrica en las entrañas de la tierra; y las estructuras microscópicas de los cristales de cuarzo responden a simetrías poliédricas inalterables.</p>
+
+  <!-- IMAGE BOX 16 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <polygon points="35,130 50,105 65,130 50,155" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.8"/>
+  <line x1="50" y1="105" x2="50" y2="155" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <circle cx="50" cy="105" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="50" cy="155" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <text x="50" y="175" font-family="serif" font-size="5" fill="#c9a84c" fill-opacity="0.2" text-anchor="middle">Tetra</text>
+  <rect x="85" y="110" width="30" height="30" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.8"/>
+  <polygon points="85,110 95,100 125,100 115,110" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <line x1="115" y1="110" x2="125" y2="100" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.3"/>
+  <line x1="85" y1="140" x2="95" y2="130" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.3"/>
+  <circle cx="85" cy="110" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="115" cy="140" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <text x="100" y="175" font-family="serif" font-size="5" fill="#c9a84c" fill-opacity="0.2" text-anchor="middle">Hexa</text>
+  <polygon points="145,100 165,110 165,140 145,150 125,140 125,110" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.8"/>
+  <line x1="145" y1="100" x2="145" y2="150" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="125" y1="110" x2="165" y2="140" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="165" y1="110" x2="125" y2="140" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <circle cx="145" cy="100" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="145" cy="150" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <text x="145" y="175" font-family="serif" font-size="5" fill="#c9a84c" fill-opacity="0.2" text-anchor="middle">Octa</text>
+  <polygon points="205,95 230,108 230,142 205,155 180,142 180,108" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="0.8"/>
+  <polygon points="205,95 230,108 220,130 190,130 180,108" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <polygon points="205,155 180,142 190,130 205,130 220,130 230,142" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <circle cx="205" cy="95" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="205" cy="155" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <text x="205" y="175" font-family="serif" font-size="5" fill="#c9a84c" fill-opacity="0.2" text-anchor="middle">Icosa</text>
+  <polygon points="265,100 280,108 280,142 265,150 250,142 250,108" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.7"/>
+  <polygon points="265,100 275,95 285,100 285,150 275,155 265,150 255,155 245,150 245,100 255,95" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <circle cx="265" cy="100" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="265" cy="150" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <text x="265" y="175" font-family="serif" font-size="5" fill="#c9a84c" fill-opacity="0.2" text-anchor="middle">Dodeca</text>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Llevado a la escala de la microbiología, el descubrimiento de la cápside proteica de muchos virus (como el adenovirus o el virus del herpes) reveló que se organizan bajo la forma de un icosaedro perfecto. ¿Por qué un organismo microscópico adopta un icosaedro? Porque es la forma espacial que le permite construir una cubierta protectora cerrada utilizando la menor cantidad posible de subunidades de proteínas idénticas, maximizando el volumen interno con la máxima rigidez estructural.</p>
+
+  <h3 class="section-heading">El Cubo de Metatrón como matriz de proyección</h3>
+
+  <p class="text-body">Cuando dibujamos bidimensionalmente el patrón conocido históricamente como el Cubo de Metatrón —que se origina trazando los trece círculos de la Fruta de la Vida y uniendo todos sus centros con líneas rectas—, presenciamos un fenómeno geométrico notable.</p>
+
+  <p class="text-body">En esa red de líneas aparentemente bidimensional están contenidas, de forma implícita y perfecta, las proyecciones en perspectiva de los cinco sólidos platónicos. El Cubo de Metatrón actúa como una plantilla o matriz plana que sintetiza todas las formas poliédricas regulares posibles en tres dimensiones.</p>
+
+  <!-- IMAGE BOX 17 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="20" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8"/>
+  <circle cx="150" cy="125" r="15" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="130" cy="90" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="170" cy="90" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="130" cy="160" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="170" cy="160" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="110" cy="125" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="190" cy="125" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.6"/>
+  <circle cx="120" cy="70" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="180" cy="70" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="120" cy="180" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="180" cy="180" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="150" cy="60" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <circle cx="150" cy="190" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.5"/>
+  <line x1="150" y1="125" x2="130" y2="90" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="170" y2="90" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="130" y2="160" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="170" y2="160" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="110" y2="125" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="190" y2="125" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="120" y2="70" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="180" y2="70" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="120" y2="180" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="180" y2="180" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="150" y2="60" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="150" y2="190" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="130" y1="90" x2="170" y2="90" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="130" y1="160" x2="170" y2="160" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="110" y1="125" x2="190" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="130" y1="90" x2="110" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="170" y1="90" x2="190" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="130" y1="160" x2="110" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="170" y1="160" x2="190" y2="125" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="130" y1="90" x2="130" y2="160" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="170" y1="90" x2="170" y2="160" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.4"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Cuando pasamos del dibujo sobre el papel al tejido tridimensional en el taller, descubrimos que los sólidos platónicos no son figuras aisladas: se transforman y se anidan unos dentro de otros. Si tomas un Icosaedro y conectas los centros de sus 20 caras triangulares, descubres dentro de él un Dodecaedro perfecto. Si unes los centros de las caras de un Cubo, nace un Octaedro.</p>
+
+  <p class="text-body">Esta cualidad, conocida como <span class="text-highlight">dualidad geométrica</span>, nos enseña que las formas no están separadas en el universo: son estados de transición de una misma red tridimensional que se expande y se contrae en perfecto equilibrio.</p>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">031</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 7 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap7">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">VII</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Siete</span>
+    <h2 class="chapter-title">La Merkabah</h2>
+    <p class="chapter-subtitle">Y la Física de la Tensegridad</p>
+  </div>
+
+  <h3 class="section-heading">La intersección de los tetraedros opuestos</h3>
+
+  <p class="text-body">Entre todas las geometrías complejas que se pueden construir con las manos, ninguna genera una fascinación tan inmediata ni una presencia tan magnética como la Estrella Octángula, conocida popularmente en diversas tradiciones espirituales como la <span class="text-highlight">Merkabah</span>.</p>
+
+  <p class="text-body">A nivel puramente geométrico, la Merkabah nace de la interpenetración simétrica de dos tetraedros regulares idénticos orientados en direcciones opuestas: uno con la cúspide apuntando hacia arriba y el otro con la cúspide apuntando hacia abajo, compartiendo un centro común. El resultado es una estrella tridimensional de 8 vértices, 24 aristas y 12 caras triangulares externas.</p>
+
+  <p class="text-body">Las tradiciones esotéricas y el neomisticismo contemporáneo han rodeado a la Merkabah de múltiples interpretaciones, definiéndola como un "vehículo de luz", un campo de energía contrarrotativo o un cuerpo sutil de ascensión. Es importante encarar estas afirmaciones con honestidad intelectual: pertenecen al terreno de la metáfora espiritual, la creencia personal y el simbolismo cultural.</p>
+
+  <p class="text-body">Sin embargo, cuando analizamos la Merkabah desde la física teórica, la topología y la ingeniería de estructuras, descubrimos que <span class="text-highlight">no necesita de especulaciones fantásticas para ser extraordinaria: es un monumento a la física de fuerzas vectoriales</span>.</p>
+
+  <h3 class="section-heading">Buckminster Fuller y el Vector Equilibrium</h3>
+
+  <p class="text-body">El célebre arquitecto, inventor y matemático estadounidense Buckminster Fuller dedicó gran parte de su vida a estudiar la geometría de los vectores de fuerza en el espacio. Fuller descubrió que cuando ensamblas una matriz de tetraedros y octaedros entrelazados, alcanzas un estado al que denominó <span class="text-highlight">Vector Equilibrium</span> (Equilibrio Vectorial).</p>
+
+  <p class="text-body">El equilibrio vectorial es la única configuración espacial donde todas las fuerzas de atracción (tracción) y repulsión (compresión) son absolutamente iguales en longitud y magnitud. Es el punto de "cero absoluto" de la dinámica de fuerzas: el estado donde el espacio no sufre ninguna distorsión y donde la energía se distribuye sin generar puntos de tensión destructiva.</p>
+
+  <p class="text-body">La Merkabah es una manifestación directa de este principio de equilibrio vectorial. Cuando observas su forma, no estás viendo un objeto estático: estás viendo la imagen congelada de fuerzas opuestas en perfecta cancelación y armonía.</p>
+
+  <!-- IMAGE BOX 18 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <polygon points="150,60 210,140 90,140" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1"/>
+  <polygon points="150,190 90,110 210,110" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="1"/>
+  <polygon points="150,60 210,140 150,190 90,140" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="150" y1="60" x2="150" y2="190" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="90" y1="110" x2="210" y2="140" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="210" y1="110" x2="90" y2="140" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="90" y1="110" x2="90" y2="140" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="210" y1="110" x2="210" y2="140" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="60" x2="90" y2="110" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="60" x2="210" y2="110" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="190" x2="90" y2="140" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="190" x2="210" y2="140" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <circle cx="150" cy="60" r="2" fill="#c9a84c" fill-opacity="0.6"/>
+  <circle cx="150" cy="190" r="2" fill="#c9a84c" fill-opacity="0.6"/>
+  <circle cx="90" cy="110" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="210" cy="110" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="90" cy="140" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="210" cy="140" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="150" cy="125" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+</svg>
+    </div>
+  </div>
+
+  <h3 class="section-heading">La experiencia tangible en el taller</h3>
+
+  <p class="text-body">Llevar la Merkabah del concepto mental a la realidad física mediante el tejido artesanal es una de las lecciones más exigentes y reveladoras para cualquier persona.</p>
+
+  <p class="text-body">Para tejer una Merkabah utilizando tubos de acero inoxidable, canutillos de vidrio e hilo de alta resistencia, no puedes permitirte la menor imprecisión. Cada uno de los dos tetraedros debe tener exactamente la misma tensión en sus 6 aristas correspondientes. Si uno de los tetraedros queda milimétricamente más ajustado que su par opuesto, la estrella se tuerce, los vértices pierden su alineación y la simetría central se destruye.</p>
+
+  <p class="text-body">Al manipular la figura en el taller, sientes en la punta de los dedos cómo la tensión se transfiere de un vértice a otro en tiempo real. Cuando finalmente logras aplicar el algoritmo de tejido correcto y aseguras el último nodo, la estructura sufre una transformación asombrosa: pasa de ser un manojo suelto de tubos e hilos a convertirse en <span class="text-highlight">un cuerpo de tensegridad autosostenido</span>.</p>
+
+  <p class="text-body">La pieza se vuelve rígida, ligera y resonante. Si la suspendes de un hilo y la iluminas con una fuente de luz directa, la estrella proyecta sobre las paredes sombras geométricas que giran suavemente. La Merkabah deja de ser una idea abstracta leída en un libro místico para convertirse en una lección viva de física, donde tus propias manos han logrado reconciliar fuerzas opuestas bajo un único diseño armónico.</p>
+
+  <!-- IMAGE BOX 19 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <polygon points="150,55 165,115 220,115 175,145 190,205 150,170 110,205 125,145 80,115 135,115" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.8"/>
+  <polygon points="150,70 162,115 205,115 170,140 180,190 150,165 120,190 130,140 95,115 138,115" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <polygon points="150,85 158,115 190,115 165,135 170,175 150,160 130,175 135,135 110,115 142,115" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <line x1="150" y1="55" x2="150" y2="170" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="80" y1="115" x2="220" y2="115" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="110" y1="205" x2="190" y2="55" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="190" y1="205" x2="110" y2="55" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <circle cx="150" cy="55" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="150" cy="170" r="1.5" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="80" cy="115" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="220" cy="115" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="110" cy="205" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="190" cy="205" r="1.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="125" cy="145" r="1.5" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="175" cy="145" r="1.5" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="135" cy="115" r="1.5" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="165" cy="115" r="1.5" fill="#c9a84c" fill-opacity="0.35"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">037</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 8 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap8">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">VIII</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Ocho</span>
+    <h2 class="chapter-title">Neuroestética</h2>
+    <p class="chapter-subtitle">La Biología del Asombro</p>
+  </div>
+
+  <h3 class="section-heading">Por qué la simetría calma la mente</h3>
+
+  <p class="text-body">¿Por qué sentimos una profunda e inconfundible sensación de paz, orden y reverencia al contemplar la copa de un árbol ancestral, el fluir de un río o las bóvedas geométricas de un templo? Durante siglos, la filosofía y el arte debatieron si la apreciación de la belleza era una construcción enteramente subjetiva o un capricho cultural. Sin embargo, la disciplina contemporánea de la <span class="text-highlight">neuroestética</span> ha demostrado que nuestra respuesta emocional ante la forma tiene profundas raíces biológicas y evolutivas.</p>
+
+  <p class="text-body">Nuestro cerebro no es una pantalla neutra; es un órgano optimizado para la supervivencia que consume una enorme cantidad de energía metabólica al procesar información visual. Cuando observamos un entorno caótico, desordenado o saturado de formas rígidas e impredecibles, el sistema visual trabaja a marchas forzadas para interpretar el entorno, lo que activa estados sutiles de alerta y fatiga cognitiva.</p>
+
+  <p class="text-body">Por el contrario, cuando los ojos se posan sobre un patrón que posee simetría, proporción áurea o autosimilitud fractal, la corteza visual reconoce la estructura de forma casi instantánea. La neurociencia ha comprobado que el procesamiento de patrones armónicos requiere un menor consumo de glucosa y energía neurológica. A este fenómeno se lo conoce como <span class="text-highlight">fluidez de procesamiento</span>.</p>
+
+  <p class="text-body">Esta eficiencia metabólica se traduce directamente en nuestro estado interno: disminuye la sobreactividad en la amígdala cerebral (el centro del miedo y la alerta) y se estimula la liberación de neurotransmisores asociados a la calma, la atención sostenida y el placer estético. <span class="text-highlight">La belleza geométrica produce un descanso fisiológico real.</span></p>
+
+  <h3 class="section-heading">La memoria de la especie</h3>
+
+  <p class="text-body">Esta respuesta no es casual. Para nuestros ancestros, la presencia de patrones geométricos y fractales en el entorno natural era la señal más clara de vida, salud y abundancia: indicaba la presencia de vegetación frondosa, agua fluida, colmenas estructuradas o cristales minerales estables. El caos y la asimetría drástica, en cambio, solían asociarse a la putrefacción, la enfermedad o el peligro.</p>
+
+  <p class="text-body">Por eso, cuando te detienes ante una estructura geométrica tridimensional y sientes que algo dentro de ti "se acomoda", no estás aprendiendo un concepto abstracto exterior; tu biología está reconociendo la misma simetría y las mismas leyes de proporción que estructuran tus neuronas, tus vasos sanguíneos y tu ADN. <span class="text-highlight">La belleza es el lenguaje mediante el cual tu organismo reconoce su diseño original.</span></p>
+
+  <!-- IMAGE BOX 20 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <path d="M150,60 Q100,60 80,100 Q65,130 80,160 Q100,190 130,200 Q150,205 170,200 Q200,190 220,160 Q235,130 220,100 Q200,60 150,60Z" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.8"/>
+  <path d="M120,90 Q140,85 160,90 Q180,95 190,110" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <path d="M110,120 Q130,110 150,115 Q170,120 185,130" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <path d="M100,150 Q120,140 140,145 Q160,150 175,160" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <circle cx="120" cy="95" r="2.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="180" cy="100" r="2" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.5"/>
+  <circle cx="110" cy="140" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="190" cy="135" r="2.5" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="130" cy="160" r="2" fill="#c9a84c" fill-opacity="0.35"/>
+  <circle cx="170" cy="155" r="2" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="100" cy="170" r="1.5" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="200" cy="165" r="1.5" fill="#c9a84c" fill-opacity="0.25"/>
+  <line x1="120" y1="95" x2="150" y2="125" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="180" y2="100" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="110" y2="140" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="150" y1="125" x2="190" y2="135" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="150" y1="125" x2="130" y2="160" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="150" y1="125" x2="170" y2="155" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2"/>
+  <line x1="110" y1="140" x2="100" y2="170" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.2"/>
+  <line x1="190" y1="135" x2="200" y2="165" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.2"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.2"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">043</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 9 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap9">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">IX</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Nueve</span>
+    <h2 class="chapter-title">La Luz Invisible</h2>
+    <p class="chapter-subtitle">Y el Límite Perceptivo</p>
+  </div>
+
+  <h3 class="section-heading">El 0.00035% de la realidad</h3>
+
+  <p class="text-body">Nuestros ojos biológicos son herramientas evolutivas extraordinarias, pero sumamente acotadas. La física nos recuerda una verdad humillante para el ego humano: la franja de luz que llamamos "espectro visible" representa apenas un <span class="text-formula">0.00035%</span> de todo el espectro electromagnético existente en el universo.</p>
+
+  <p class="text-body">A nuestro alrededor orbitan constantemente ondas de radio, microondas, radiación infrarroja, luz ultravioleta, rayos X y rayos gamma. Todas estas frecuencias forman parte del tejido real del cosmos, pero pasan completamente invisibles para nuestra retina. La mayor parte de la realidad física nos rodea e impregna en este preciso instante sin que nuestros sentidos puedan registrarla directamente.</p>
+
+  <p class="text-body">Además, la imagen que creemos "ver" allá afuera no es una copia fiel de la realidad exterior. Las señales de luz visible que ingresan por la pupila son transformadas en impulsos eléctricos por los fotorreceptores de la retina y enviadas a través del nervio óptico hacia la corteza visual. Es nuestro cerebro el que "reconstruye" e interpreta esa información dentro de la caja oscura del cráneo. <span class="text-highlight">Asumir que el universo es únicamente lo que nuestros ojos biológicos alcanzan a percibir es un profundo error de apreciación.</span></p>
+
+  <h3 class="section-heading">La geometría como lente deductiva</h3>
+
+  <p class="text-body">Aquí es donde la geometría sagrada y la física matemática revelan su verdadero valor. La geometría actúa como una lente deductiva, una brújula conceptual que nos permite mapear y comprender la arquitectura del <span class="text-formula">99.999%</span> de la realidad invisible que escapa a nuestros sentidos.</p>
+
+  <p class="text-body">Cuando la ciencia estudia la estructura de un átomo, la vibración de una onda armónica, la red cristalina de un mineral o la difracción de los rayos X, no los "ve" directamente con los ojos: los deduce y los representa mediante la matemática y la geometría. <span class="text-highlight">La forma geométrica es el plano visible de las fuerzas invisibles.</span></p>
+
+  <p class="text-body">Al comprender esto, nuestra posición frente al mundo cambia radicalmente. La geometría nos enseña a ser humildes ante nuestros límites perceptivos y, al mismo tiempo, nos da la clave para intuir la inmensa red de orden y coherencia que sostiene la materia en todo momento.</p>
+
+  <!-- IMAGE BOX 21 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <ellipse cx="150" cy="125" rx="70" ry="40" fill="none" stroke="#c9a84c" stroke-opacity="0.4" stroke-width="1"/>
+  <circle cx="150" cy="125" r="20" fill="none" stroke="#c9a84c" stroke-opacity="0.5" stroke-width="0.8"/>
+  <circle cx="150" cy="125" r="8" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="150" cy="125" r="3" fill="#c9a84c" fill-opacity="0.6"/>
+  <line x1="150" y1="125" x2="260" y2="95" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="150" y1="125" x2="260" y2="110" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="260" y2="125" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="260" y2="140" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.3"/>
+  <line x1="150" y1="125" x2="260" y2="155" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <polygon points="210,108 225,125 210,142" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <circle cx="240" cy="90" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="245" cy="105" r="1.5" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="248" cy="120" r="1.5" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="248" cy="135" r="1.5" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="240" cy="150" r="1.5" fill="#c9a84c" fill-opacity="0.3"/>
+  <text x="250" y="90" font-family="serif" font-size="4" fill="#c9a84c" fill-opacity="0.15">UV</text>
+  <text x="250" y="155" font-family="serif" font-size="4" fill="#c9a84c" fill-opacity="0.15">IR</text>
+  <text x="250" y="128" font-family="serif" font-size="4" fill="#c9a84c" fill-opacity="0.2">VIS</text>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">047</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CAPÍTULO 10 -->
+<!-- ============================================== -->
+<section class="chapter" id="cap10">
+  <div class="geo-corner top-left"></div>
+  <div class="geo-corner bottom-right"></div>
+  <span class="chapter-number">X</span>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Capítulo Diez</span>
+    <h2 class="chapter-title">El Arte de Tejer la Luz</h2>
+    <p class="chapter-subtitle">Y la Meditación Activa</p>
+  </div>
+
+  <h3 class="section-heading">La física de la materia tangible</h3>
+
+  <p class="text-body">Llega un punto en la trayectoria de cualquier buscador donde la sola contemplación intelectual o el estudio de diagramas en un libro dejan de ser suficientes. El ser humano siente la necesidad ancestral de usar las manos, de bajar el concepto a la tierra y pasar de ser un mero observador a convertirse en un participante activo de la forma.</p>
+
+  <p class="text-body">Tejer geometrías tridimensionales no es una tarea abstracta ni una simple manualidad pasiva: es un diálogo directo y riguroso con la física de los materiales.</p>
+
+  <p class="text-body">En nuestro trabajo utilizaremos tres elementos fundamentales, cada uno con una función estructural y simbólica clara:</p>
+
+  <ul class="text-list">
+    <li><span class="list-highlight">El Acero Inoxidable:</span> Tubos delgados y rígidos que aportan la fuerza de compresión. Son los vectores rectos que sostienen la distancia entre los nodos y resisten la presión del espacio.</li>
+    <li><span class="list-highlight">La Tanza o Hilo de Alta Resistencia:</span> El elemento fluido que aporta la tracción viva. Es la fuerza invisible que une los vértices y abraza toda la matriz.</li>
+    <li><span class="list-highlight">Los Canutillos de Vidrio y Cristales:</span> Elementos que se ubican en los puntos de cruce para refractar y reflejar la luz, transformando la estructura metálica en una escultura luminosa.</li>
+  </ul>
+
+  <p class="text-body">Un solo milímetro de exceso en la tensión de un hilo o un corte desigual en un tubo de acero desviará la simetría de toda la pieza. El tejido te exige desarrollar una sensibilidad absoluta en la yema de los dedos: aprendes a sentir el punto exacto donde el hilo alcanza su firmeza sin romper la tanza ni deformar el vértice. Resolver el camino por el cual el hilo debe recorrer la figura sin repetirse inútilmente es la aplicación práctica del algoritmo de tejido que descubrimos junto a Clarisa.</p>
+
+  <h3 class="section-heading">La presencia absoluta en Icho Cruz</h3>
+
+  <p class="text-body">Existe la idea muy difundida de que para meditar es necesario sentarse en una postura rígida, poner la mente en blanco y silenciar a la fuerza el flujo del pensamiento. Mi experiencia de más de quince años tejiendo estas formas en Villa Icho Cruz me ha enseñado una vía diferente: <span class="text-highlight">la meditación activa</span>.</p>
+
+  <p class="text-body">Cuando te sientas a construir un Dodecaedro o una Merkabah, la mente analítica no puede estar en otro lado. Si te distraes pensando en las preocupaciones del pasado o la ansiedad del futuro, pierdes la secuencia del hilo, ensartas un canutillo equivocado o aplicas una tensión desigual que arruina el módulo.</p>
+
+  <p class="text-body">La geometría impone una presencia absoluta. Mientras tus manos repiten de forma fluida el algoritmo de tejido, el ruido mental se apaga de forma natural. No hay esfuerzo por "callar" los pensamientos: simplemente pierden su fuerza porque toda tu consciencia está enfocada en el instante presente, en el paso del hilo, en el equilibrio del siguiente vértice.</p>
+
+  <!-- IMAGE BOX 22 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="150" cy="125" r="70" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <circle cx="150" cy="125" r="55" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.4"/>
+  <circle cx="150" cy="125" r="40" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="25" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <circle cx="150" cy="125" r="12" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <circle cx="150" cy="125" r="4" fill="#c9a84c" fill-opacity="0.4"/>
+  <circle cx="150" cy="55" r="2" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="220" cy="125" r="2" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="150" cy="195" r="2" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="80" cy="125" r="2" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="200" cy="75" r="1.5" fill="#c9a84c" fill-opacity="0.15"/>
+  <circle cx="200" cy="175" r="1.5" fill="#c9a84c" fill-opacity="0.15"/>
+  <circle cx="100" cy="75" r="1.5" fill="#c9a84c" fill-opacity="0.15"/>
+  <circle cx="100" cy="175" r="1.5" fill="#c9a84c" fill-opacity="0.15"/>
+  <line x1="150" y1="55" x2="150" y2="195" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.2"/>
+  <line x1="80" y1="125" x2="220" y2="125" stroke="#c9a84c" stroke-opacity="0.04" stroke-width="0.2"/>
+  <line x1="100" y1="75" x2="200" y2="175" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="0.2"/>
+  <line x1="200" y1="75" x2="100" y2="175" stroke="#c9a84c" stroke-opacity="0.03" stroke-width="0.2"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body">Ver a una persona sostener en sus manos la figura que acaba de tejer tras horas de silencio, atención y paciencia es presenciar un acto de profunda transformación. La persona no solo se lleva un objeto geométrico a su casa: ha experimentado la certeza de que, mediante la presencia y la paciencia, <span class="text-highlight">sus propias manos son capaces de poner orden en el caos</span>.</p>
+
+  <!-- IMAGE BOX 23 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <circle cx="50" cy="60" r="18" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.7"/>
+  <circle cx="50" cy="60" r="10" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <polygon points="130,55 145,45 160,55 150,70 130,70" fill="none" stroke="#c9a84c" stroke-opacity="0.35" stroke-width="0.7"/>
+  <polygon points="220,50 240,65 230,85 210,85 200,65" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <rect x="70" y="100" width="25" height="25" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <polygon points="50,160 65,140 80,160" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <polygon points="130,155 145,145 160,155 160,170 130,170" fill="none" stroke="#c9a84c" stroke-opacity="0.3" stroke-width="0.6"/>
+  <circle cx="230" cy="125" r="15" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.5"/>
+  <ellipse cx="220" cy="180" rx="20" ry="12" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <polygon points="100,190 115,180 130,190 115,200" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.5"/>
+  <circle cx="60" cy="210" r="8" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.4"/>
+  <circle cx="170" cy="105" r="3" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="195" cy="190" r="2" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="265" cy="55" r="2.5" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="25" cy="130" r="2" fill="#c9a84c" fill-opacity="0.15"/>
+  <line x1="130" y1="55" x2="130" y2="70" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.2"/>
+  <line x1="220" y1="50" x2="240" y2="65" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.2"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">051</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- EPÍLOGO -->
+<!-- ============================================== -->
+<section class="chapter special-chapter" id="epilogo">
+  <div class="chapter-ornament">
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="30,5 55,20 55,45 30,58 5,45 5,20" stroke="currentColor" stroke-width="0.5" fill="none" style="color: var(--gold);"/>
+      <polygon points="30,15 45,24 45,40 30,50 15,40 15,24" stroke="currentColor" stroke-width="0.3" fill="none" style="color: var(--gold);"/>
+      <circle cx="30" cy="30" r="8" stroke="currentColor" stroke-width="0.3" fill="none" style="color: var(--gold);"/>
+    </svg>
+  </div>
+
+  <div class="chapter-header">
+    <span class="chapter-label">Epílogo</span>
+    <h2 class="chapter-title">Habitantes de la Armonía</h2>
+  </div>
+
+  <p class="text-body">Hemos llegado al final de este recorrido. Si has acompañado estas páginas con apertura y atención, habrás descubierto que el caos no es la ley fundamental de la existencia, sino una ilusión transitoria; un orden más profundo y complejo que aún no habíamos aprendido a decodificar.</p>
+
+  <p class="text-body">La geometría no es una religión, ni un dogma místico, ni una materia escolar aburrida reducida a fórmulas en un pizarrón. La geometría es <span class="text-highlight">el alfabeto impecable con el que la Fuente escribe la realidad física</span>. Es el código de proporciones y frecuencias que sostiene a las estrellas, a los cristales, a la molécula de ADN y a tu propia respiración.</p>
+
+  <p class="text-body">Llevas esta matemática perfecta inscrita en tu propia biología. No estás solo ni extraviado en un universo ciego: eres <span class="text-highlight">un fractal consciente de la Creación</span>, el propio cosmos adquiriendo la capacidad de contemplarse, comprenderse y maravillarse ante su propia armonía.</p>
+
+  <p class="text-body">A partir de este momento, afina tu mirada. Cuando camines por la naturaleza, cuando contemples la forma de una flor o cuando tomes un hilo para tejer una estructura con tus manos, recuerda con profunda alegría y reverencia que eres el espejo vivo de la Creación.</p>
+
+  <!-- IMAGE BOX 24 -->
+  <div class="image-box">
+    <div class="image-box-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250" style="width:100%;height:auto;display:block;">
+  <rect width="300" height="250" fill="#08080e"/>
+  <path d="M0,200 L60,140 L120,170 L180,120 L240,155 L300,130 L300,250 L0,250Z" fill="#c9a84c" fill-opacity="0.04"/>
+  <path d="M0,200 L60,140 L120,170 L180,120 L240,155 L300,130" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.8"/>
+  <path d="M0,220 L80,180 L140,200 L200,170 L260,190 L300,175 L300,250 L0,250Z" fill="#c9a84c" fill-opacity="0.02"/>
+  <path d="M0,220 L80,180 L140,200 L200,170 L260,190 L300,175" fill="none" stroke="#c9a84c" stroke-opacity="0.12" stroke-width="0.5"/>
+  <circle cx="80" cy="140" r="12" fill="none" stroke="#c9a84c" stroke-opacity="0.2" stroke-width="0.5"/>
+  <circle cx="180" cy="120" r="15" fill="none" stroke="#c9a84c" stroke-opacity="0.15" stroke-width="0.4"/>
+  <line x1="80" y1="140" x2="180" y2="120" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.3"/>
+  <line x1="80" y1="140" x2="180" y2="120" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.2" stroke-dasharray="2 3"/>
+  <circle cx="130" cy="60" r="18" fill="none" stroke="#c9a84c" stroke-opacity="0.1" stroke-width="0.4"/>
+  <circle cx="130" cy="60" r="8" fill="#c9a84c" fill-opacity="0.08"/>
+  <line x1="130" y1="78" x2="130" y2="120" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.3"/>
+  <circle cx="130" cy="60" r="3" fill="#c9a84c" fill-opacity="0.15"/>
+  <circle cx="250" cy="45" r="1" fill="#c9a84c" fill-opacity="0.3"/>
+  <circle cx="40" cy="35" r="0.8" fill="#c9a84c" fill-opacity="0.25"/>
+  <circle cx="270" cy="80" r="0.6" fill="#c9a84c" fill-opacity="0.2"/>
+  <circle cx="60" cy="50" r="0.5" fill="#c9a84c" fill-opacity="0.15"/>
+</svg>
+    </div>
+  </div>
+
+  <p class="text-body text-italic" style="margin-top: 3rem; font-size: 1.2rem;">Has vuelto a tu diseño original.</p>
+
+  <div class="footer-ornament">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/></svg>
+  </div>
+  <div class="page-number">057</div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- COLOPHON / CONTRAPORTADA -->
+<!-- ============================================== -->
+<section class="page" id="colophon" style="display:flex; align-items:center; justify-content:center;">
+  <div style="text-align: center;">
+    <!-- Flower of Life subtle background -->
+    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" style="opacity: 0.08; margin-bottom: 2rem;">
+      <circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="50" cy="30" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="50" cy="70" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="33" cy="40" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="67" cy="40" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="33" cy="60" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+      <circle cx="67" cy="60" r="20" stroke="currentColor" stroke-width="0.5" style="color:var(--gold)"/>
+    </svg>
+
+    <p class="colophon-text" style="margin-bottom: 1.5rem;">
+      GEOMETRÍA Y DISEÑO DIVINO<br>
+      El Código Oculto de la Creación<br>
+      y el Arte de Tejer la Luz
+    </p>
+    <p class="colophon-text" style="margin-bottom: 2rem;">
+      © 2026 Enzo Emanuel Burga<br>
+      Todos los derechos reservados
+    </p>
+    <p class="colophon-text" style="font-size: 0.65rem; color: var(--text-muted); opacity: 0.5;">
+      Diseño y composición tipográfica<br>
+      Villa Icho Cruz
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- IMAGEN ADICIONAL SUGERIDA (25) -->
+<!-- ============================================== -->
+<!-- Nota: Esta imagen se sugiere como portada interna o agradecimiento -->
+<!-- Puedes agregarla al inicio del libro o como página especial -->
+
+
+</div><!-- fin .book -->
+
+</body>
+</html>
