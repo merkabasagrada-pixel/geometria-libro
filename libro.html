@@ -622,6 +622,98 @@ body {
   line-height: 1.6;
 }
 
+/* ===== VISUAL INDEX / CARTOGRAPHY ===== */
+.visual-index {
+  padding: 5rem 0 4rem;
+  page-break-before: always;
+}
+
+.visual-index-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.visual-index-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 0.03em;
+}
+
+.visual-index-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.visual-index-item {
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(201, 168, 76, 0.02);
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: default;
+}
+
+.visual-index-item:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-2px);
+}
+
+.visual-index-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) saturate(0.9);
+  transition: filter 0.3s;
+}
+
+.visual-index-item:hover img {
+  filter: brightness(1) saturate(1);
+}
+
+.visual-index-item-label {
+  padding: 0.5rem 0.6rem;
+  text-align: center;
+}
+
+.visual-index-item-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.visual-index-item-chapter {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin-top: 0.15rem;
+  letter-spacing: 0.05em;
+}
+
+.visual-index-divider {
+  text-align: center;
+  margin: 3rem 0 0;
+}
+
 /* ===== LISTS ===== */
 .text-list {
   margin: 1.5rem 0 2rem 1.5rem;
@@ -1071,6 +1163,131 @@ body {
 
 
 <!-- ============================================== -->
+<!-- VISUAL INDEX / CARTOGRAPHY -->
+<!-- ============================================== -->
+<section class="visual-index" id="cartografia">
+  <h2 class="visual-index-title">Cartografía Visual</h2>
+  <p class="visual-index-subtitle">Un mapa de la geometría que habita en estas páginas</p>
+
+  <div class="visual-index-grid">
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina - La Flor de la vida.png" alt="La Flor de la Vida">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">La Flor de la Vida</div>
+        <div class="visual-index-item-chapter">Fundamento</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina Dios y la Geometria.png" alt="Dios y la Geometría">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Dios y la Geometría</div>
+        <div class="visual-index-item-chapter">Prólogo</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina - infografia_2_ciencia.png" alt="Ciencia y Espiritualidad">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Ciencia y Espiritualidad</div>
+        <div class="visual-index-item-chapter">Prólogo</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina Frases.png" alt="Frases Armónicas">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Frases Armónicas</div>
+        <div class="visual-index-item-chapter">Prólogo</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaGirasol.jpg" alt="Fibonacci en la Naturaleza">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Fibonacci</div>
+        <div class="visual-index-item-chapter">Capítulo IV</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaProporcionAurea.jpg" alt="La Proporción Áurea">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Proporción Áurea</div>
+        <div class="visual-index-item-chapter">Capítulo IV</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaADN.jpg" alt="El Código del ADN">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Código del ADN</div>
+        <div class="visual-index-item-chapter">Capítulo IV</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina El Agua y las Frecuencias.png" alt="Agua y Frecuencias">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Agua y Frecuencias</div>
+        <div class="visual-index-item-chapter">Capítulo V</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaSolidosPlatonicos.jpg" alt="Sólidos Platónicos">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Sólidos Platónicos</div>
+        <div class="visual-index-item-chapter">Capítulo VI</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaSolidosplatonicosq.png" alt="Cristalografía Real">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Cristalografía</div>
+        <div class="visual-index-item-chapter">Capítulo VI</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/Pagina infografia_1_metatron.png" alt="Cubo de Metatrón">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Cubo de Metatrón</div>
+        <div class="visual-index-item-chapter">Capítulo VI</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaMerkaba.png" alt="Merkabah">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Merkabah</div>
+        <div class="visual-index-item-chapter">Capítulo VII</div>
+      </div>
+    </div>
+
+    <div class="visual-index-item">
+      <img src="imagenes/infografias/PaginaTejidodeGeometrias.png" alt="Tejido de Geometrías">
+      <div class="visual-index-item-label">
+        <div class="visual-index-item-name">Tejido de Geometrías</div>
+        <div class="visual-index-item-chapter">Capítulo X</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="visual-index-divider">
+    <svg width="60" height="12" viewBox="0 0 60 12" fill="none">
+      <line x1="0" y1="6" x2="22" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+      <polygon points="30,1 34,6 30,11 26,6" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.4"/>
+      <line x1="38" y1="6" x2="60" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
 <!-- DEDICATORIA -->
 <!-- ============================================== -->
 <section class="chapter special-chapter" id="dedicatoria" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
@@ -1112,15 +1329,6 @@ body {
     </div>
   </div>
 </section>
-
-<!-- INFOGRAFÍA — La Flor de la Vida -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina - La Flor de la vida.png" alt="La Flor de la Vida">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">La Flor de la Vida</div>
-    <div class="infographic-caption-desc">El patrón sagrado que contiene la geometría de toda creación</div>
-  </div>
-</div>
 
 
 <!-- ============================================== -->
@@ -1201,6 +1409,24 @@ body {
 
   <p class="text-body">A este orden profundo y primigenio solemos llamarlo <span class="text-highlight">Geometría Sagrada</span>. Pero debemos comprender esto desde las primeras líneas con total claridad y honestidad intelectual: la geometría no es la Fuente creadora en sí misma. No es Dios, ni es un objeto de adoración mística abstracta. La geometría es, sencillamente, el lenguaje impecable, el alfabeto perfecto mediante el cual esa Fuente inefable se revela, se expresa y se materializa en el plano físico. Es la sintaxis con la que el Creador programa la realidad.</p>
 
+  <!-- INFOGRAFÍA — Dios y la Geometría -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina Dios y la Geometria.png" alt="Dios y la Geometría">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Dios y la Geometría</div>
+      <div class="infographic-caption-desc">La arquitectura divina revelada en las formas eternas</div>
+    </div>
+  </div>
+
+  <!-- INFOGRAFÍA — Frases Armónicas -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina Frases.png" alt="Frases Armónicas">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Frases Armónicas</div>
+      <div class="infographic-caption-desc">Palabras que resuenan con la frecuencia del creador</div>
+    </div>
+  </div>
+
   <p class="text-body">Durante mucho tiempo, la humanidad ha vivido bajo la ilusión de la separación. Nos han enseñado a sentirnos entes aislados, meros espectadores pasivos caminando sobre la superficie de un planeta inerte. Sin embargo, cuando una forma natural nos parece profundamente bella, cuando nos conmueve hasta las lágrimas la simetría de una flor, la estructura impecable de un cristal de hielo o la quietud matemática de un cielo estrellado, lo que ocurre en realidad no es un capricho cultural ni un juicio estético subjetivo. Es un poderoso acto de <span class="text-highlight">resonancia biológica</span>.</p>
 
   <!-- IMAGE BOX 2 -->
@@ -1239,6 +1465,24 @@ body {
 
   <p class="text-body">Mi mayor deseo al entregarte estas páginas es que pases gradualmente de la ilusión del caos a la certeza de la armonía. No encontrarás aquí la imposición de dogmas rígidos ni la frialdad de tratados matemáticos académicos sin alma. En su lugar, caminaremos por un puente donde la evidencia empírica de la física, la biología molecular, la cristalografía y los fractales se entrelazan con la filosofía contemplativa y la práctica viva de tejer estructuras tridimensionales con las manos.</p>
 
+  <!-- INFOGRAFÍA — Ciencia y Espiritualidad -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina - infografia_2_ciencia.png" alt="Ciencia y Espiritualidad">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Ciencia y Espiritualidad</div>
+      <div class="infographic-caption-desc">Donde la física cuántica encuentra la filosofía antigua</div>
+    </div>
+  </div>
+
+  <!-- INFOGRAFÍA — La Flor de la Vida -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina - La Flor de la vida.png" alt="La Flor de la Vida">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">La Flor de la Vida</div>
+      <div class="infographic-caption-desc">El patrón sagrado que contiene la geometría de toda creación</div>
+    </div>
+  </div>
+
   <p class="text-body">Deseo que, al levantar la vista hacia las nubes o al acariciar la corteza de un árbol en tu camino, recuerdes con profunda alegría y tranquilidad que la misma matemática exacta que estabiliza una galaxia organiza cada una de las células de tu corazón. Te doy la bienvenida a este espacio de exploración. Estás a punto de descubrir que <span class="text-highlight">llevás el código del infinito grabado en tu propio ser.</span></p>
 
   <div class="footer-ornament">
@@ -1246,31 +1490,6 @@ body {
   </div>
   <div class="page-number">003</div>
 </section>
-
-<!-- INFOGRAFÍAS — Prólogo -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina Dios y la Geometria.png" alt="Dios y la Geometría">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Dios y la Geometría</div>
-    <div class="infographic-caption-desc">La arquitectura divina revelada en las formas eternas</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina - infografia_2_ciencia.png" alt="Ciencia y Espiritualidad">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Ciencia y Espiritualidad</div>
-    <div class="infographic-caption-desc">Donde la física cuántica encuentra la filosofía antigua</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina Frases.png" alt="Frases de Armónicas">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Frases de Armónicas</div>
-    <div class="infographic-caption-desc">Palabras que resuenan con la frecuencia del创ador</div>
-  </div>
-</div>
 
 
 <!-- ============================================== -->
@@ -1681,6 +1900,15 @@ body {
 
   <p class="text-body">En el corazón de este algoritmo vegetal se encuentra una serie numérica popularizada en Occidente por Leonardo de Pisa, conocido como <span class="text-highlight">Fibonacci</span>. La regla de esta secuencia es de una sencillez sublime: cada número es el resultado de la suma de los dos anteriores.</p>
 
+  <!-- INFOGRAFÍA — Fibonacci en la Naturaleza -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaGirasol.jpg" alt="Fibonacci en la Naturaleza">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Fibonacci en la Naturaleza</div>
+      <div class="infographic-caption-desc">La espiral que se repite en pétalos, conchas y galaxias</div>
+    </div>
+  </div>
+
   <div class="blockquote">
     <p>1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...</p>
   </div>
@@ -1692,6 +1920,15 @@ body {
   </p>
 
   <p class="text-body">Phi no es un concepto estético inventado por el arte humano; es la frecuencia geométrica que le permite a la materia crecer y expandirse de forma autosimilar. Es la constante que garantiza que un organismo pueda aumentar su tamaño de forma indefinida sin perder jamás su centro de gravedad, su simetría ni su estabilidad estructural original.</p>
+
+  <!-- INFOGRAFÍA — La Proporción Áurea -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaProporcionAurea.jpg" alt="La Proporción Áurea">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">La Proporción Áurea</div>
+      <div class="infographic-caption-desc">El número divino que equilibra toda forma orgánica</div>
+    </div>
+  </div>
 
   <!-- IMAGE BOX 11 -->
   <div class="image-box">
@@ -1725,6 +1962,15 @@ body {
   <p class="text-body">Cuando la biología molecular contemporánea logró medir las dimensiones exactas de la doble hélice de la molécula de ADN humano, descubrió una relación geométrica fascinante: un ciclo completo de la espiral del ADN mide exactamente <span class="text-formula">34 Å</span> (34 ángstroms) de longitud, mientras que el ancho de la hélice mide exactamente <span class="text-formula">21 Å</span>.</p>
 
   <p class="text-body">Tanto el 34 como el 21 son números consecutivos de la Secuencia de Fibonacci. La razón de su división (<span class="text-formula">34 / 21 ≈ 1.619</span>) encarna directamente la Proporción Áurea Φ. <span class="text-highlight">La matriz que guarda el código genético de toda la vida en la Tierra se enrolla y se empaqueta bajo la misma constante matemática que rige la forma de los girasoles y la trayectoria de los huracanes.</span></p>
+
+  <!-- INFOGRAFÍA — El Código del ADN -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaADN.jpg" alt="El Código del ADN">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">El Código del ADN</div>
+      <div class="infographic-caption-desc">Fibonacci y Phi codificados en la molécula de la vida</div>
+    </div>
+  </div>
 
   <!-- IMAGE BOX 12 -->
   <div class="image-box">
@@ -1829,31 +2075,6 @@ body {
   <div class="page-number">021</div>
 </section>
 
-<!-- INFOGRAFÍAS — Fibonacci, Phi y la Proporción Áurea -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaGirasol.jpg" alt="Fibonacci en la Naturaleza">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Fibonacci en la Naturaleza</div>
-    <div class="infographic-caption-desc">La espiral que se repite en pétalos, conchas y galaxias</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaADN.jpg" alt="El Código del ADN">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">El Código del ADN</div>
-    <div class="infographic-caption-desc">Fibonacci y Phi codificados en la molécula de la vida</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaProporcionAurea.jpg" alt="La Proporción Áurea">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">La Proporción Áurea</div>
-    <div class="infographic-caption-desc">El número divino que equilibra toda forma orgánica</div>
-  </div>
-</div>
-
 
 <!-- ============================================== -->
 <!-- CAPÍTULO 5 -->
@@ -1912,6 +2133,15 @@ body {
 
   <p class="text-body">Al comprender la física de la cimática, nos damos cuenta de que el cuerpo humano —compuesto en más de un 70% por agua— es un instrumento biológico de alta sensibilidad resonante. El ritmo de nuestra respiración, la cualidad de nuestras emociones y el tono de nuestras palabras generan ondas de presión que organizan o desorganizan nuestra estructura interna.</p>
 
+  <!-- INFOGRAFÍA — El Agua y las Frecuencias -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina El Agua y las Frecuencias.png" alt="El Agua y las Frecuencias">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">El Agua y las Frecuencias</div>
+      <div class="infographic-caption-desc">Cómo las vibraciones invisibles moldean la materia tangible</div>
+    </div>
+  </div>
+
   <p class="text-body">Esta ley física se experimenta con total claridad en la práctica manual del taller. Cuando tejemos una estructura tridimensional con tubos de acero inoxidable y tanza de alta resistencia, estamos ejecutando un proceso similar al de la cimática. Cada pase del hilo, cada ajuste de tensión en las aristas genera una "frecuencia de carga" en la figura.</p>
 
   <p class="text-body">Si la tensión aplicada es desigual, la figura emite una distorsión visual y física; pero cuando el hilo alcanza el ajuste exacto en todos sus vértices, los tubos entran en un estado de <span class="text-highlight">coherencia de fase</span>. La figura se vuelve firme, resuena al tacto y proyecta un equilibrio que transmite una paz inmediata a quien la contempla.</p>
@@ -1946,15 +2176,6 @@ body {
   <div class="page-number">027</div>
 </section>
 
-<!-- INFOGRAFÍA — El Agua y las Frecuencias -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina El Agua y las Frecuencias.png" alt="El Agua y las Frecuencias">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">El Agua y las Frecuencias</div>
-    <div class="infographic-caption-desc">Cómo las vibraciones invisibles moldean la materia tangible</div>
-  </div>
-</div>
-
 
 <!-- ============================================== -->
 <!-- CAPÍTULO 6 -->
@@ -1984,6 +2205,15 @@ body {
     <li><span class="list-highlight">El Dodecaedro</span> — 12 caras pentagonales</li>
   </ul>
 
+  <!-- INFOGRAFÍA — Los Sólidos Platónicos -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaSolidosPlatonicos.jpg" alt="Los Sólidos Platónicos">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Los Sólidos Platónicos</div>
+      <div class="infographic-caption-desc">Los cinco bloques fundamentales de la tridimensionalidad</div>
+    </div>
+  </div>
+
   <p class="text-body">En el diálogo Timeo, Platón propuso una intuición poética y filosófica que resonó durante siglos: asoció cada uno de estos sólidos a los elementos constitutivos del cosmos (el Tetraedro al Fuego por su naturaleza punzante; el Cubo a la Tierra por su estabilidad sólida; el Octaedro al Aire por su levedad; el Icosaedro al Agua por su fluidez casi esférica; y el Dodecaedro al Éter o la totalidad del cosmos).</p>
 
   <p class="text-body">Sin embargo, para construir una obra seria y perdurable, debemos marcar un límite claro entre el valor simbólico o histórico de estas metáforas y la realidad de la ciencia empírica. <span class="text-highlight">La verdadera fascinación de los sólidos platónicos no radica en la especulación esotérica, sino en el hecho de que la física moderna y la cristalografía han demostrado que estas cinco formas son los bloques de empaquetamiento fundamental de la materia atómica.</span></p>
@@ -1993,6 +2223,15 @@ body {
   <p class="text-body">La naturaleza no utiliza los sólidos platónicos por una razón mística abstracta, sino por el principio de mínima acción y menor gasto de energía.</p>
 
   <p class="text-body">Cuando los átomos de un mineral se organizan para formar una red cristalina sólida, buscan la configuración espacial que les permita empaquetarse distribuyendo las fuerzas electrostáticas con el mayor equilibrio posible. Es por esto que la sal común (NaCl) cristaliza en redes cúbicas perfectas; la pirita y la fluorita forman octaedros y cubos de precisión geométrica en las entrañas de la tierra; y las estructuras microscópicas de los cristales de cuarzo responden a simetrías poliédricas inalterables.</p>
+
+  <!-- INFOGRAFÍA — Cristalografía Real -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaSolidosplatonicosq.png" alt="Cristalografía Real">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Cristalografía Real</div>
+      <div class="infographic-caption-desc">La estructura oculta que sostiene la materia</div>
+    </div>
+  </div>
 
   <!-- IMAGE BOX 16 -->
   <div class="image-box">
@@ -2040,6 +2279,15 @@ body {
   <p class="text-body">Cuando dibujamos bidimensionalmente el patrón conocido históricamente como el Cubo de Metatrón —que se origina trazando los trece círculos de la Fruta de la Vida y uniendo todos sus centros con líneas rectas—, presenciamos un fenómeno geométrico notable.</p>
 
   <p class="text-body">En esa red de líneas aparentemente bidimensional están contenidas, de forma implícita y perfecta, las proyecciones en perspectiva de los cinco sólidos platónicos. El Cubo de Metatrón actúa como una plantilla o matriz plana que sintetiza todas las formas poliédricas regulares posibles en tres dimensiones.</p>
+
+  <!-- INFOGRAFÍA — El Cubo de Metatrón -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/Pagina infografia_1_metatron.png" alt="El Cubo de Metatrón">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">El Cubo de Metatrón</div>
+      <div class="infographic-caption-desc">Matriz de proyección de los sólidos platónicos y compuesto del universo</div>
+    </div>
+  </div>
 
   <!-- IMAGE BOX 17 -->
   <div class="image-box">
@@ -2096,31 +2344,6 @@ body {
   <div class="page-number">031</div>
 </section>
 
-<!-- INFOGRAFÍAS — Sólidos Platónicos y Metatrón -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaSolidosPlatonicos.jpg" alt="Los Sólidos Platónicos">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Los Sólidos Platónicos</div>
-    <div class="infographic-caption-desc">Los cinco bloques fundamentales de la tridimensionalidad</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaSolidosplatonicosq.png" alt="Sólidos Platónicos — Detalle">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Geometría del Espacio Vacío</div>
-    <div class="infographic-caption-desc">La estructura oculta que sostiene la materia</div>
-  </div>
-</div>
-
-<div class="infographic-page">
-  <img src="imagenes/infografias/Pagina infografia_1_metatron.png" alt="El Cubo de Metatrón">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">El Cubo de Metatrón</div>
-    <div class="infographic-caption-desc">Matriz de proyección de los sólidos platónicos y compuesto del universo</div>
-  </div>
-</div>
-
 
 <!-- ============================================== -->
 <!-- CAPÍTULO 7 -->
@@ -2141,6 +2364,15 @@ body {
   <p class="text-body">Entre todas las geometrías complejas que se pueden construir con las manos, ninguna genera una fascinación tan inmediata ni una presencia tan magnética como la Estrella Octángula, conocida popularmente en diversas tradiciones espirituales como la <span class="text-highlight">Merkabah</span>.</p>
 
   <p class="text-body">A nivel puramente geométrico, la Merkabah nace de la interpenetración simétrica de dos tetraedros regulares idénticos orientados en direcciones opuestas: uno con la cúspide apuntando hacia arriba y el otro con la cúspide apuntando hacia abajo, compartiendo un centro común. El resultado es una estrella tridimensional de 8 vértices, 24 aristas y 12 caras triangulares externas.</p>
+
+  <!-- INFOGRAFÍA — Merkabah -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaMerkaba.png" alt="Merkabah">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Merkabah</div>
+      <div class="infographic-caption-desc">El carro de luz ascensional, intersección de los tetraedros opuestos</div>
+    </div>
+  </div>
 
   <p class="text-body">Las tradiciones esotéricas y el neomisticismo contemporáneo han rodeado a la Merkabah de múltiples interpretaciones, definiéndola como un "vehículo de luz", un campo de energía contrarrotativo o un cuerpo sutil de ascensión. Es importante encarar estas afirmaciones con honestidad intelectual: pertenecen al terreno de la metáfora espiritual, la creencia personal y el simbolismo cultural.</p>
 
@@ -2223,15 +2455,6 @@ body {
   </div>
   <div class="page-number">037</div>
 </section>
-
-<!-- INFOGRAFÍA — Merkabah -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaMerkaba.png" alt="Merkabah">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Merkabah</div>
-    <div class="infographic-caption-desc">El carro de luz ascensional, intersección de los tetraedros opuestos</div>
-  </div>
-</div>
 
 
 <!-- ============================================== -->
@@ -2386,6 +2609,15 @@ body {
 
   <p class="text-body">Tejer geometrías tridimensionales no es una tarea abstracta ni una simple manualidad pasiva: es un diálogo directo y riguroso con la física de los materiales.</p>
 
+  <!-- INFOGRAFÍA — Tejido de Geometrías -->
+  <div class="infographic-page">
+    <img src="imagenes/infografias/PaginaTejidodeGeometrias.png" alt="Tejido de Geometrías">
+    <div class="infographic-caption">
+      <div class="infographic-caption-title">Tejido de Geometrías</div>
+      <div class="infographic-caption-desc">La trama invisible que conecta todas las formas del universo</div>
+    </div>
+  </div>
+
   <p class="text-body">En nuestro trabajo utilizaremos tres elementos fundamentales, cada uno con una función estructural y simbólica clara:</p>
 
   <ul class="text-list">
@@ -2464,15 +2696,6 @@ body {
   </div>
   <div class="page-number">051</div>
 </section>
-
-<!-- INFOGRAFÍA — Tejido de Geometrías -->
-<div class="infographic-page">
-  <img src="imagenes/infografias/PaginaTejidodeGeometrias.png" alt="Tejido de Geometrías">
-  <div class="infographic-caption">
-    <div class="infographic-caption-title">Tejido de Geometrías</div>
-    <div class="infographic-caption-desc">La trama invisible que conecta todas las formas del universo</div>
-  </div>
-</div>
 
 
 <!-- ============================================== -->
