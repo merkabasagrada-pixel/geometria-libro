@@ -6,7 +6,7 @@
 <title>Geometría y Diseño Divino — Enzo Emanuel Burga</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  
+
   :root {
     --gold: #c9a84c;
     --gold-light: #e8d48b;
@@ -23,136 +23,73 @@
     min-height: 100vh;
   }
 
-  /* ===== LOGIN SCREEN ===== */
-  #login-screen {
+  /* ===== BOOK (visible during trial) ===== */
+  #book-container { display: none; }
+  #book-container.show { display: block; }
+
+  /* ===== BLOCKING OVERLAY ===== */
+  #block-overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg);
-    transition: opacity 0.6s ease;
-  }
-  #login-screen.hidden {
+    background: rgba(10, 10, 15, 0.97);
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+  #block-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
   }
 
-  .login-box {
+  .block-box {
     text-align: center;
-    padding: 3rem 2.5rem;
+    padding: 2.8rem 2.5rem;
     border: 1px solid rgba(201, 168, 76, 0.15);
     border-radius: 8px;
     background: linear-gradient(135deg, rgba(201, 168, 76, 0.03), transparent);
-    max-width: 420px;
-    width: 90%;
+    max-width: 440px;
+    width: 92%;
+    max-height: 90vh;
+    overflow-y: auto;
   }
 
-  .login-box svg {
-    margin-bottom: 1.5rem;
-    opacity: 0.3;
+  .block-box svg {
+    margin-bottom: 1.2rem;
+    opacity: 0.35;
   }
 
-  .login-box h1 {
+  .block-title {
     font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 500;
     color: var(--gold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
-  .login-box p {
-    font-size: 0.8rem;
+  .block-message {
+    font-size: 0.82rem;
     color: var(--text-muted);
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-  }
-
-  .login-input {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    margin-bottom: 0.8rem;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201, 168, 76, 0.15);
-    border-radius: 4px;
-    color: var(--text);
-    font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  .login-input:focus {
-    border-color: var(--gold);
-  }
-  .login-input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.5;
-  }
-
-  .login-btn {
-    width: 100%;
-    padding: 0.9rem;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 0.5rem;
-  }
-  .login-btn:hover {
-    background: rgba(201, 168, 76, 0.1);
-  }
-
-  .login-error {
-    color: #c94c4c;
-    font-size: 0.75rem;
-    margin-top: 0.8rem;
-    min-height: 1.2em;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .login-error.show {
-    opacity: 1;
-  }
-
-  /* ===== COLLABORATION SECTION ===== */
-  .collab-section {
-    margin-top: 1.8rem;
-    padding-top: 0;
-  }
-
-  .collab-divider {
-    margin-bottom: 1.4rem;
-    opacity: 0.8;
-  }
-
-  .collab-text {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 1.6rem;
     letter-spacing: 0.02em;
-    text-align: center;
   }
-  .collab-text strong {
+  .block-message strong {
     color: var(--gold);
     font-weight: 500;
   }
 
+  /* Value badge */
   .collab-value {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
     padding: 0.8rem;
     border: 1px solid rgba(201, 168, 76, 0.1);
     border-radius: 4px;
@@ -177,6 +114,7 @@
     font-size: 0.8rem;
   }
 
+  /* Payment methods */
   .collab-methods-title {
     font-size: 0.65rem;
     text-transform: uppercase;
@@ -212,93 +150,255 @@
     font-weight: 500;
   }
 
-  /* ===== BOOK CONTAINER ===== */
-  #book-container {
-    display: none;
+  /* Divider */
+  .block-divider {
+    margin: 1.6rem 0 1.4rem;
   }
-  #book-container.show {
-    display: block;
+  .block-divider svg { margin-bottom: 0; }
+
+  /* Login section inside overlay */
+  .block-login-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-bottom: 0.8rem;
   }
+
+  .login-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.7rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .login-input:focus {
+    border-color: var(--gold);
+  }
+  .login-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.3rem;
+  }
+  .login-btn:hover {
+    background: rgba(201, 168, 76, 0.1);
+  }
+
+  .login-error {
+    color: #c94c4c;
+    font-size: 0.72rem;
+    margin-top: 0.7rem;
+    min-height: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .login-error.show {
+    opacity: 1;
+  }
+
+  /* Timer badge (top-right corner during trial) */
+  #timer-badge {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9990;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: rgba(10, 10, 15, 0.8);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  #timer-badge.show { opacity: 1; }
+  #timer-badge.hidden { opacity: 0; pointer-events: none; }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 500px) {
-    .login-box { padding: 2rem 1.5rem; }
+    .block-box { padding: 2rem 1.5rem; }
   }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- ===== LOGIN SCREEN ===== -->
-<div id="login-screen">
-  <div class="login-box">
+<!-- ===== BOOK (loads immediately for trial) ===== -->
+<div id="book-container">
+  <iframe id="book-frame" style="width:100%;height:100vh;border:none;display:block;"></iframe>
+</div>
+
+<!-- ===== TIMER BADGE ===== -->
+<div id="timer-badge">Tiempo restante: <span id="timer-text">15:00</span></div>
+
+<!-- ===== BLOCKING OVERLAY ===== -->
+<div id="block-overlay">
+  <div class="block-box">
+    <!-- Sacred geometry icon -->
     <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
       <circle cx="25" cy="25" r="23" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
       <polygon points="25,5 45,18 45,38 25,45 5,38 5,18" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.3"/>
       <polygon points="25,45 5,12 45,12" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.2"/>
     </svg>
-    <h1>Geometría y Diseño Divino</h1>
-    <p>Ingresá para acceder al libro</p>
+
+    <h2 class="block-title">Geometría y Diseño Divino</h2>
+
+    <p class="block-message">
+      Has completado el periodo de prueba de <strong>15 minutos</strong>.<br>
+      Si este conocimiento resuena contigo y deseas retribuir el servicio y la energía invertidos en la materialización de esta obra, te invito a realizar una <strong>colaboración consciente</strong>.
+    </p>
+
+    <!-- Value -->
+    <div class="collab-value">
+      <span class="collab-label">Valor sugerido</span>
+      <span class="collab-amount">$9.000 ARS <span class="collab-or">o bien</span> 9 USD</span>
+    </div>
+
+    <!-- Payment methods -->
+    <p class="collab-methods-title">Medios de pago</p>
+
+    <div class="collab-method">
+      <span class="collab-method-name">Mercado Pago</span>
+      <span class="collab-method-detail">Alias: <strong>plan.curso.plan.mp</strong></span>
+    </div>
+
+    <div class="collab-method">
+      <span class="collab-method-name">PayPal</span>
+      <span class="collab-method-detail"><strong>enzoburga@gmail.com</strong></span>
+    </div>
+
+    <!-- Divider -->
+    <div class="block-divider">
+      <svg width="60" height="12" viewBox="0 0 60 12" fill="none">
+        <line x1="0" y1="6" x2="22" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+        <polygon points="30,1 34,6 30,11 26,6" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <line x1="38" y1="6" x2="60" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- Login for permanent access -->
+    <p class="block-login-label">¿Ya realizaste tu aporte? Ingresá con tu usuario</p>
+
     <input type="text" id="username" class="login-input" placeholder="Usuario" autocomplete="off">
     <input type="password" id="password" class="login-input" placeholder="Contraseña" autocomplete="off">
-    <button class="login-btn" onclick="login()">Entrar</button>
+    <button class="login-btn" onclick="login()">Acceder</button>
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
-
-    <div class="collab-section">
-      <div class="collab-divider">
-        <svg width="60" height="12" viewBox="0 0 60 12" fill="none">
-          <line x1="0" y1="6" x2="22" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
-          <polygon points="30,1 34,6 30,11 26,6" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.4"/>
-          <line x1="38" y1="6" x2="60" y2="6" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
-        </svg>
-      </div>
-
-      <p class="collab-text">Si este conocimiento resuena contigo y deseas retribuir el servicio y la energía invertidos en la materialización de esta obra, te invito a realizar una <strong>colaboración consciente</strong>.</p>
-
-      <div class="collab-value">
-        <span class="collab-label">Valor sugerido</span>
-        <span class="collab-amount">$9.000 ARS <span class="collab-or">o bien</span> 9 USD</span>
-      </div>
-
-      <p class="collab-methods-title">Medios de pago</p>
-
-      <div class="collab-method">
-        <span class="collab-method-name">Mercado Pago</span>
-        <span class="collab-method-detail">Alias: <strong>plan.curso.plan.mp</strong></span>
-      </div>
-
-      <div class="collab-method">
-        <span class="collab-method-name">PayPal</span>
-        <span class="collab-method-detail"><strong>enzoburga@gmail.com</strong></span>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- ===== BOOK ===== -->
-<div id="book-container">
-  <iframe id="book-frame" style="width:100%;height:100vh;border:none;display:block;"></iframe>
-</div>
-
 <script>
-  // ========== USUARIOS ==========
+  // ========== USUARIOS PERMANENTES ==========
   // Para agregar un usuario nuevo, agregar una línea así:
   // 'nombredeusuario': 'contraseña',
-  // (sin comas al final del último)
   const USERS = {
     'geometriasdeluz': 'geometriasagrada',
   };
 
+  const TRIAL_MS = 15 * 60 * 1000; // 15 minutos
+
+  // ========== INIT ==========
+  (function init() {
+    // If user already has permanent access, show book directly
+    if (localStorage.getItem('geo_access') === '1') {
+      showBook();
+      return;
+    }
+
+    // First visit? Store timestamp
+    if (!localStorage.getItem('geo_first_visit')) {
+      localStorage.setItem('geo_first_visit', Date.now().toString());
+    }
+
+    const firstVisit = parseInt(localStorage.getItem('geo_first_visit'));
+    const elapsed = Date.now() - firstVisit;
+
+    if (elapsed >= TRIAL_MS) {
+      // Trial expired → block immediately
+      blockAccess();
+    } else {
+      // Trial active → show book + timer, schedule block
+      showBook();
+      startTimer(firstVisit);
+      setTimeout(blockAccess, TRIAL_MS - elapsed);
+    }
+  })();
+
+  function showBook() {
+    document.getElementById('book-container').classList.add('show');
+    document.getElementById('book-frame').src = 'libro.html';
+    document.getElementById('timer-badge').classList.add('show');
+  }
+
+  function blockAccess() {
+    document.getElementById('timer-badge').classList.remove('show');
+    document.getElementById('block-overlay').classList.add('visible');
+  }
+
+  // ========== TIMER ==========
+  function startTimer(firstVisit) {
+    const timerEl = document.getElementById('timer-text');
+    const badge = document.getElementById('timer-badge');
+
+    function update() {
+      const elapsed = Date.now() - firstVisit;
+      const remaining = Math.max(0, TRIAL_MS - elapsed);
+      const min = Math.floor(remaining / 60000);
+      const sec = Math.floor((remaining % 60000) / 1000);
+      timerEl.textContent = String(min).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+
+      if (remaining <= 0) {
+        badge.classList.add('hidden');
+        return;
+      }
+
+      // Turn red in last 60 seconds
+      if (remaining <= 60000) {
+        timerEl.style.color = '#c94c4c';
+      }
+
+      requestAnimationFrame(update);
+    }
+    update();
+  }
+
+  // ========== LOGIN ==========
   function login() {
     const user = document.getElementById('username').value.trim().toLowerCase();
     const pass = document.getElementById('password').value.trim();
     const error = document.getElementById('login-error');
 
     if (USERS[user] && USERS[user] === pass) {
-      document.getElementById('login-screen').classList.add('hidden');
-      const container = document.getElementById('book-container');
-      container.classList.add('show');
-      document.getElementById('book-frame').src = 'libro.html';
+      // Grant permanent access
+      localStorage.setItem('geo_access', '1');
+      localStorage.removeItem('geo_first_visit');
+      document.getElementById('block-overlay').classList.remove('visible');
+      document.getElementById('timer-badge').classList.remove('show');
+      document.getElementById('timer-badge').classList.add('hidden');
+      showBook();
     } else {
       error.classList.add('show');
       document.getElementById('password').value = '';
@@ -306,7 +406,9 @@
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') login();
+    if (e.key === 'Enter' && document.getElementById('block-overlay').classList.contains('visible')) {
+      login();
+    }
   });
 </script>
 
